@@ -85,7 +85,12 @@ namespace CheckModulName.ViewModels
             CheckKVFieldMethods.CheckField12();
 
             //Поле 13
-            if (ModulFields.field13Value.Length == 1)
+
+            if (ModulFields.field13Value.Length == 0)
+            {
+                ModulFields.field13IsError = true;
+            }
+            else if (ModulFields.field13Value.Length == 1)
             {
                 if (ModulFields.field13Value != Enums.field13_EOM_MirrowType.S.ToString())
                 {

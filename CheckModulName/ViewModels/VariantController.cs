@@ -37,6 +37,9 @@ namespace CheckModulName.ViewModels
                 // Прогон проверки каждого из модулей
                 foreach ( string module in modules) 
                 {
+                    //Очистка полей окна и свойств класса модуль
+                    SupportMethods.ClearWindow();
+
                     // Разделение полного пути модуля на имя и локальный путь к папке нахождения  
                     string currentModuName = module.Substring(module.LastIndexOf("\\") + 1);
                     string currentModulPath = module.Replace(currentModuName, "");
