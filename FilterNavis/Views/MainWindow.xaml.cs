@@ -31,7 +31,8 @@ namespace FilterNavis.Views
         public MainWindow()
         {
             InitializeComponent();
-            List<ModelCategory> categories = CurrentModel.AllCategoriesList;
+
+            List<ModelCategory> categories = CurrentModel.AllModelCategoriesList;
 
             CurrentWindow.Wnd = this;
 
@@ -62,6 +63,12 @@ namespace FilterNavis.Views
             this.IsUseRegistrChars.SelectedIndex = 0;
             this.IsFindOnlyFirst.ItemsSource = Enum.GetValues(typeof(FilterYesOrNoEnum.FilterYesOrNo));
             this.IsFindOnlyFirst.SelectedIndex = 0;
+
+
+            double screenHeight = SystemParameters.FullPrimaryScreenHeight;
+            double screenWidth = SystemParameters.FullPrimaryScreenWidth;
+            this.Top = (screenHeight - this.Height) / 0x00000002;
+            this.Left = (screenWidth - this.Width) / 0x00000002;
 
             this.Show();
         }

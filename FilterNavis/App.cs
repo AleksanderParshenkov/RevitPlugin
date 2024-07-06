@@ -21,14 +21,14 @@ namespace FilterNavis
         
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            MessageBox.Show("dada");
+            
 
             /// <summary>
             /// Создание экземпляра основного контроллера,
             /// задача которого - заполнение свойств статического класса,
             /// являющихся постоянными сведениями о текущей запущенной модели
             /// </summary>
-            MainController mainController = new MainController(commandData);
+            StartController mainController = new StartController(commandData);
 
 
 

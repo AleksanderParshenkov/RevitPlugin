@@ -15,7 +15,7 @@ namespace FilterNavis.ViewModels
     {
         public static List<Element> AllFilterMethod()
         {
-            List<Element> listElemenntsStart = CurrentModel.AllElementsList;
+            List<Element> listElemenntsStart = CurrentModel.ModelElements;
             List<Element> listElemenntsAnd = listElemenntsStart.ToList();
             List<Element> listElemenntsOr0 = new List<Element>();
             List<Element> listElemenntsOr1 = new List<Element>();
@@ -132,18 +132,18 @@ namespace FilterNavis.ViewModels
 
             return result;
         }
-        public class ElementsIEqualityComparer : IEqualityComparer<Element>
-        {
-            public bool Equals(Element x, Element y)
-            {
-                return x.Id == y.Id;
-            }
+        //public class ElementsIEqualityComparer : IEqualityComparer<Element>
+        //{
+        //    public bool Equals(Element x, Element y)
+        //    {
+        //        return x.Id == y.Id;
+        //    }
 
-            public int GetHashCode(Element obj)
-            {
-                return HashCode.Combine(obj.Id);
-            }
-        }
+        //    public int GetHashCode(Element obj)
+        //    {
+        //        return HashCode.Combine(obj.Id);
+        //    }
+        //}
 
         public static List<Element> FilterMethod(List<Element> listElemennts, BuiltInParameter a, StorageType storageType, FilterConditionEnum.FilterConditionFull filterConditionFullItem, string value)
         {

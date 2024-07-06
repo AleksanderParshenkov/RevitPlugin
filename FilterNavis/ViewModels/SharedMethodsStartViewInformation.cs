@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.CSharp;
 
 namespace FilterNavis.ViewModels
 {
@@ -24,8 +25,8 @@ namespace FilterNavis.ViewModels
         {
             List<ModelCategory> categories = new List<ModelCategory>();
             var UsedCategories = elementsCollector
-                .Select(x => x.Category)
-                .Distinct(new CategoryIEqualityComparer()).ToList();
+                .Select(x => x.Category).ToList();
+                //.Distinct(new CategoryIEqualityComparer()).ToList();
 
             foreach (var item in UsedCategories)
             {
@@ -40,18 +41,6 @@ namespace FilterNavis.ViewModels
             }
             categories = categories.Where(x => x.ModelParameter.Count() != 0 && x.ModelParameter != null).OrderBy(x => x.Name).ToList();
             return categories;
-        }
-        public class CategoryIEqualityComparer : IEqualityComparer<Category>
-        {
-            public bool Equals(Category x, Category y)
-            {
-                return x.Id == y.Id && x.Name == y.Name;
-            }
-
-            public int GetHashCode(Category obj)
-            {
-                return HashCode.Combine(obj.Id, obj.Name);
-            }
         }
 
         public static List<ModelParameter> GetAllMyParameters(Document document, Category mycategory)
@@ -148,17 +137,17 @@ namespace FilterNavis.ViewModels
             return myParameters;
         }
 
-        public class MyParameterIEqualityComparer : IEqualityComparer<ModelParameter>
-        {
-            public bool Equals(ModelParameter x, ModelParameter y)
-            {
-                return x.Id == y.Id;
-            }
+        //public class MyParameterIEqualityComparer : IEqualityComparer<ModelParameter>
+        //{
+        //    public bool Equals(ModelParameter x, ModelParameter y)
+        //    {
+        //        return x.Id == y.Id;
+        //    }
 
-            public int GetHashCode(ModelParameter obj)
-            {
-                return HashCode.Combine(obj.Id, obj.Id);
-            }
-        }
+        //    public int GetHashCode(ModelParameter obj)
+        //    {
+        //        return HashCode.Combine(obj.Id, obj.Id);
+        //    }
+        //}
     }
 }
