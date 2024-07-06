@@ -3,306 +3,233 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FilterNavis.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="700">
+             mc:Ignorable="d" ResizeMode="CanResize" IsEnabled="True"
+             WindowStartupLocation="CenterScreen"
+             MinHeight="450" MinWidth="450" HorizontalAlignment="Center"
+             Height="450" Width="600" Title="Super Filter">
+
+    <Window.Resources>
+        <Style TargetType="Button" x:Key="MainButton">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Background" Value="#294979"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="GroupBox">
+            <Setter Property="Foreground" Value="#294979"/>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="SComboBox_Left">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="SComboBox_Center">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="ComboBox" x:Key="SComboBox_Right">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Данные для проверки" Grid.Row="0">
+        <GroupBox Header="Фильтры" Grid.Row="0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0"
-                           Text="Имя провряемого модуля"
-                           HorizontalAlignment="Center"/>
-                <TextBox Grid.Row="1"
-                         Text="EOM_KV_none_BE_3.45_ST_0NM_(7.2)RY1.1_3.15x7.2_A_V0_(N)_(N)_S"
-                         HorizontalContentAlignment="Center"/>
-                <Button x:Name="btn_TakeCurrentName"
-                        Grid.Row="2"
-                        Content="Получить имя текущего модуля"/>
-            </Grid>            
-        </GroupBox>
-        <GroupBox Header="Итоги проверки" Grid.Row="1">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <TextBlock Grid.Row="0" 
-                           Grid.Column="0"
-                           Text="Поле"/>
-                <TextBlock Grid.Row="0" 
-                           Grid.Column="1"
-                           Text="Назначение"/>
-                <TextBlock Grid.Row="0" 
-                           Grid.Column="2"
-                           Text="Значение"/>
-                <TextBlock Grid.Row="0" 
-                           Grid.Column="3"
-                           Text="Расшифровка"/>
-                <TextBlock Grid.Row="0"
-                           Grid.Column="4"
-                           Text="Ошибки"/>
-                
-                
-                <TextBlock Grid.Row="1" 
-                           Grid.Column="0"
-                           Text="Поле 0"/>
-                <TextBlock Grid.Row="2" 
-                           Grid.Column="0"
-                           Text="Поле 1"/>
-                <TextBlock Grid.Row="3" 
-                           Grid.Column="0"
-                           Text="Поле 2"/>
-                <TextBlock Grid.Row="4" 
-                           Grid.Column="0"
-                           Text="Поле 3"/>
-                <TextBlock Grid.Row="5" 
-                           Grid.Column="0"
-                           Text="Поле 4"/>
-                <TextBlock Grid.Row="6" 
-                           Grid.Column="0"
-                           Text="Поле 5"/>
-                <TextBlock Grid.Row="7" 
-                           Grid.Column="0"
-                           Text="Поле 6"/>
-                <TextBlock Grid.Row="8" 
-                           Grid.Column="0"
-                           Text="Поле 7"/>
-                <TextBlock Grid.Row="9" 
-                           Grid.Column="0"
-                           Text="Поле 8"/>
-                <TextBlock Grid.Row="10" 
-                           Grid.Column="0"
-                           Text="Поле 9"/>
-                <TextBlock Grid.Row="11" 
-                           Grid.Column="0"
-                           Text="Поле 10"/>
-                <TextBlock Grid.Row="12" 
-                           Grid.Column="0"
-                           Text="Поле 11"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="0"
-                           Text="Поле 12"/>
-                <TextBlock Grid.Row="14" 
-                           Grid.Column="0"
-                           Text="Поле 13"/>
 
-                <TextBlock Grid.Row="1" 
-                           Grid.Column="1"
-                           Text="Дисциплина"/>
-                <TextBlock Grid.Row="2" 
-                           Grid.Column="1"
-                           Text="Модуль"/>
-                <TextBlock Grid.Row="3" 
-                           Grid.Column="1"
-                           Text="Тип сборки квартиры"/>
-                <TextBlock Grid.Row="4" 
-                           Grid.Column="1"
-                           Text="Конструкция С/У"/>
-                <TextBlock Grid.Row="5" 
-                           Grid.Column="1"
-                           Text="Ширина по фасаду"/>
-                <TextBlock Grid.Row="6" 
-                           Grid.Column="1"
-                           Text="Класс здания"/>
-                <TextBlock Grid.Row="7" 
-                           Grid.Column="1"
-                           Text="Тип квартиры"/>
-                <TextBlock Grid.Row="8" 
-                           Grid.Column="1"
-                           Text="Матрица"/>
-                <TextBlock Grid.Row="9" 
-                           Grid.Column="1"
-                           Text="Длина фасада х глубина"/>
-                <TextBlock Grid.Row="10" 
-                           Grid.Column="1"
-                           Text="Отзеркаленность"/>
-                <TextBlock Grid.Row="11" 
-                           Grid.Column="1"
-                           Text="Номер версии"/>
-                <TextBlock Grid.Row="12" 
-                           Grid.Column="1"
-                           Text="Летние помещения"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="1"
-                           Text="Применение к этажу"/>
-                <TextBlock Grid.Row="14" 
-                           Grid.Column="1"
-                           Text="Иная информация"/>
+                <CheckBox Grid.Row="0" Grid.Column="0"
+                          x:Name="CheckRow0" 
+                          IsChecked="True" IsEnabled="False"/>
+                <CheckBox Grid.Row="1" Grid.Column="0"
+                          x:Name="CheckRow1"/>
+                <CheckBox Grid.Row="2" Grid.Column="0"
+                          x:Name="CheckRow2"/>
+                <CheckBox Grid.Row="3" Grid.Column="0"
+                          x:Name="CheckRow3"/>
+                <CheckBox Grid.Row="4" Grid.Column="0"
+                          x:Name="CheckRow4"/>
 
-                <TextBlock Grid.Row="1" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="2" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="3" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="4" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="5" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="6" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="7" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="8" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="9" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="10" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="11" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="12" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="2"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="14" 
-                           Grid.Column="2"
-                           Text="Тест"/>
 
-                <TextBlock Grid.Row="1" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="2" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="3" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="4" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="5" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="6" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="7" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="8" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="9" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="10" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="11" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="12" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="3"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="14" 
-                           Grid.Column="3"
-                           Text="Тест"/>
+                <ComboBox x:Name="AndOr0" Grid.Row="0" Grid.Column="1"
+                          IsEnabled="{Binding ElementName=CheckRow0, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="AndOr1" Grid.Row="1" Grid.Column="1"
+                          IsEnabled="{Binding ElementName=CheckRow1, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="AndOr2" Grid.Row="2" Grid.Column="1"
+                          IsEnabled="{Binding ElementName=CheckRow2, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="AndOr3" Grid.Row="3" Grid.Column="1"
+                          IsEnabled="{Binding ElementName=CheckRow3, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="AndOr4" Grid.Row="4" Grid.Column="1"
+                          IsEnabled="{Binding ElementName=CheckRow4, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
 
-                <TextBlock Grid.Row="1" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="2" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="3" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="4" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="5" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="6" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="7" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="8" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="9" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="10" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="11" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="12" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="13" 
-                           Grid.Column="4"
-                           Text="Тест"/>
-                <TextBlock Grid.Row="14" 
-                           Grid.Column="4"
-                           Text="Тест"/>
+                <ComboBox x:Name="Category0" DisplayMemberPath ="Name" Grid.Row="0" Grid.Column="2"
+                          IsEnabled="{Binding ElementName=CheckRow0, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Category1" DisplayMemberPath ="Name" Grid.Row="1" Grid.Column="2"
+                          IsEnabled="{Binding ElementName=CheckRow1, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Category2" DisplayMemberPath ="Name" Grid.Row="2" Grid.Column="2"
+                          IsEnabled="{Binding ElementName=CheckRow2, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Category3" DisplayMemberPath ="Name" Grid.Row="3" Grid.Column="2"
+                          IsEnabled="{Binding ElementName=CheckRow3, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Category4" DisplayMemberPath ="Name" Grid.Row="4" Grid.Column="2"
+                          IsEnabled="{Binding ElementName=CheckRow4, Path=IsChecked}"
+                          Style="{StaticResource SComboBox_Left}"/>
+
+                <ComboBox x:Name="Parameter0" Grid.Row="0" Grid.Column="3"
+                          IsEnabled="{Binding ElementName=CheckRow0, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Category0, Path=SelectedItem.MyParameters}"
+                          DisplayMemberPath ="Name" Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Parameter1" Grid.Row="1" Grid.Column="3"
+                          IsEnabled="{Binding ElementName=CheckRow1, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Category1, Path=SelectedItem.MyParameters}"
+                          DisplayMemberPath ="Name" Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Parameter2" Grid.Row="2" Grid.Column="3"
+                          IsEnabled="{Binding ElementName=CheckRow2, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Category2, Path=SelectedItem.MyParameters}"
+                          DisplayMemberPath ="Name" Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Parameter3" Grid.Row="3" Grid.Column="3"
+                          IsEnabled="{Binding ElementName=CheckRow3, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Category3, Path=SelectedItem.MyParameters}"
+                          DisplayMemberPath ="Name" Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Parameter4" Grid.Row="4" Grid.Column="3"
+                          IsEnabled="{Binding ElementName=CheckRow4, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Category4, Path=SelectedItem.MyParameters}"
+                          DisplayMemberPath ="Name" Style="{StaticResource SComboBox_Left}"/>
+
+                <ComboBox x:Name="Condition0" Grid.Row="0" Grid.Column="4"
+                          IsEnabled="{Binding ElementName=CheckRow0, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Parameter0, Path=SelectedItem.ConditionFilters}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Condition1" Grid.Row="1" Grid.Column="4"
+                          IsEnabled="{Binding ElementName=CheckRow1, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Parameter1, Path=SelectedItem.ConditionFilters}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Condition2" Grid.Row="2" Grid.Column="4"
+                          IsEnabled="{Binding ElementName=CheckRow2, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Parameter2, Path=SelectedItem.ConditionFilters}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Condition3" Grid.Row="3" Grid.Column="4"
+                          IsEnabled="{Binding ElementName=CheckRow3, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Parameter3, Path=SelectedItem.ConditionFilters}"
+                          Style="{StaticResource SComboBox_Left}"/>
+                <ComboBox x:Name="Condition4" Grid.Row="4" Grid.Column="4"
+                          IsEnabled="{Binding ElementName=CheckRow4, Path=IsChecked}"
+                          ItemsSource="{Binding ElementName=Parameter4, Path=SelectedItem.ConditionFilters}"
+                          Style="{StaticResource SComboBox_Left}"/>
+
+                <TextBox x:Name="Value0" Grid.Row="0" Grid.Column="5"
+                         IsEnabled="{Binding ElementName=CheckRow0, Path=IsChecked}"/>
+                <TextBox x:Name="Value1" Grid.Row="1" Grid.Column="5"
+                         IsEnabled="{Binding ElementName=CheckRow1, Path=IsChecked}"/>
+                <TextBox x:Name="Value2" Grid.Row="2" Grid.Column="5"
+                         IsEnabled="{Binding ElementName=CheckRow2, Path=IsChecked}"/>
+                <TextBox x:Name="Value3" Grid.Row="3" Grid.Column="5"
+                         IsEnabled="{Binding ElementName=CheckRow3, Path=IsChecked}"/>
+                <TextBox x:Name="Value4" Grid.Row="4" Grid.Column="5"
+                         IsEnabled="{Binding ElementName=CheckRow4, Path=IsChecked}"/>
 
             </Grid>
         </GroupBox>
-        <Button x:Name="btn_StartCheck" 
-                Grid.Row="2" 
-                Content="ПРОВЕРИТЬ"/>
+        <GroupBox Header="Настройка фильтров" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Учитывать связи"
+                           Grid.Row="0" Grid.Column="0"
+                           Visibility="Hidden"/>
+                <TextBlock Text="Учитывать ширину символов"
+                           Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Text="Учитывать диакретические знаки"
+                           Grid.Row="2" Grid.Column="0"/>
+                <TextBlock Text="Учитывать регистр" 
+                           Grid.Row="3" Grid.Column="0"/>
+                <TextBlock Text="До первого найденного"
+                           Grid.Row="4" Grid.Column="0"/>
+
+                <ComboBox x:Name="IsUseInstances" 
+                          Grid.Row="0" Grid.Column="1"
+                          Visibility="Hidden"
+                          Style="{StaticResource SComboBox_Right}"/>
+                <ComboBox x:Name="IsUseWidthChars" 
+                          Grid.Row="1" Grid.Column="1"
+                          Style="{StaticResource SComboBox_Right}"/>
+                <ComboBox x:Name="IsUseDiacrChars" 
+                          Grid.Row="2" Grid.Column="1"
+                          Style="{StaticResource SComboBox_Right}"/>
+                <ComboBox x:Name="IsUseRegistrChars" 
+                          Grid.Row="3" Grid.Column="1"
+                          Style="{StaticResource SComboBox_Right}"/>
+                <ComboBox x:Name="IsFindOnlyFirst" 
+                          Grid.Row="4" Grid.Column="1"
+                          Style="{StaticResource SComboBox_Right}"/>
+
+            </Grid>
+        </GroupBox>
+        <Button  x:Name="btn_StartFiltering" Style="{StaticResource MainButton}" Grid.Row="2"
+                 Content="ПРИМЕНИТЬ ФИЛЬТР"                 
+                 Click="btn_StartFiltering_Click"/>
     </Grid>
 </Window>
+
+
+            

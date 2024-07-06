@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace FilterNavis.Models
 {
-    internal class ModelCategory
-    {
+    public class ModelCategory
+    {        
+        public string Name { get; set; }
+        public ElementId Id { get; set; }
+        public List<ModelParameter> ModelParameter { get; set; }        
     }
 }

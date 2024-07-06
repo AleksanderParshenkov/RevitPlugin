@@ -20,10 +20,9 @@ namespace RevitPlugin
             ImageMethods.AddImageToButtonData(newButtonData1, Properties.Resources.logo_selectAll);
             PushButton newButton1 = panel.AddItem(newButtonData1) as PushButton;
             
-
-            var newButtonData2 = new PushButtonData("Проверка\nимени модуля", "Проверка\nимени модуля", assemblyName: assemblyName, "RevitPlugin.CheckModulName");
-            ImageMethods.AddImageToButtonData(newButtonData2, Properties.Resources.logo_checkModulName);
-            PushButton newButton2 = panel.AddItem(newButtonData2) as PushButton;
+            //var newButtonData2 = new PushButtonData("Проверка\nимени модуля", "Проверка\nимени модуля", assemblyName: assemblyName, "RevitPlugin.CheckModulName");
+            //ImageMethods.AddImageToButtonData(newButtonData2, Properties.Resources.logo_checkModulName);
+            //PushButton newButton2 = panel.AddItem(newButtonData2) as PushButton;
 
             return Result.Succeeded;
         }
