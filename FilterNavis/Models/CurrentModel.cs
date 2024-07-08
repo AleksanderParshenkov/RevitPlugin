@@ -138,11 +138,11 @@ namespace FilterNavis.Models
                     ModelCategory category = new ModelCategory();
                     category.Name = item.Name;
                     category.Id = item.Id;
-                    category.ModelParameter = GetAllMyParameters(Doc, item);
+                    category.CategoryParameters = GetAllMyParameters(Doc, item);
                     categoriesResultList.Add(category);
                 }
             }
-            categoriesResultList = categoriesResultList.Where(x => x.ModelParameter.Count() != 0 && x.ModelParameter != null).OrderBy(x => x.Name).ToList();
+            categoriesResultList = categoriesResultList.Where(x => x.CategoryParameters.Count() != 0 && x.CategoryParameters != null).OrderBy(x => x.Name).ToList();
             
             AllModelCategoriesList = categoriesResultList;
         }

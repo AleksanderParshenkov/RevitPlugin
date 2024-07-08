@@ -11,6 +11,6 @@ namespace FilterNavis.Models
     {        
         public string Name { get; set; }
         public ElementId Id { get; set; }
-        public List<ModelParameter> ModelParameter { get; set; }        
+        public List<ModelParameter> CategoryParameters { get; set; }        
     }
 }

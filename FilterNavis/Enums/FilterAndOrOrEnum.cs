@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,10 @@ namespace FilterNavis.Enums
     {
         public enum FilterAndOrOr
         {
-            ИЛИ = 0,
-            И = 1
+            [Description("ИЛИ")]
+            or = 0,
+            [Description("И")]
+            and = 1
         }
     }
 }

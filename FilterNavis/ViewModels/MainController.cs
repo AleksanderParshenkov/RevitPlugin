@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using FilterNavis.Models;
+using FilterNavis.Support;
 using FilterNavis.Views;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,9 @@ namespace FilterNavis.ViewModels
             CurrentModel.GetAllCategoies();
 
             MainWindow Wnd = new MainWindow();
+            CurrentWindow.Wnd = Wnd;
+
+            SupportMethods.SetItemSourceToComboBoxMainWindow();
         }
     }
 }

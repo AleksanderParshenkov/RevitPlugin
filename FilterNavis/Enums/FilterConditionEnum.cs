@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +11,34 @@ namespace FilterNavis.Enums
     {
         public enum FilterConditionFull
         {
-            Равно = 0,
-            Не_равно = 1,
-            Больше = 2,
-            Больше_или_равно = 3,
-            Меньше = 4,
-            Меньше_или_равно = 5,
-            Содержит = 6,
-            Не_содержит = 7,
-            Начинается_с = 8,
-            Не_начинается_с = 9,
-            Заканчикавется_на = 10,
-            Не_заканчивается_на = 11,
-            Имеет_значение = 12,
-            Не_имеет_значение = 13
+            [Description("Равно")]
+            Equals = 0,
+            [Description("Не равно")]
+            NotEquals = 1,
+            [Description("Больше")]
+            More = 2,
+            [Description("Больше или равно")]
+            MoreAndEquals = 3,
+            [Description("Меньше")]
+            Less = 4,
+            [Description("Меньше или равно")]
+            LessAndEquals = 5,
+            [Description("Содержит")]
+            Contained = 6,
+            [Description("Не содержит")]
+            NotContained = 7,
+            [Description("Начинается с")]
+            StartWith = 8,
+            [Description("Не начинается с")]
+            NotStartWith = 9,
+            [Description("Заканчивается на")]
+            EndWith = 10,
+            [Description("Не заканчивается на")]
+            NotEndWith = 11,
+            [Description("Имеет значение")]
+            HadValue = 12,
+            [Description("Не имеет значения")]
+            NotHadValue = 13
         }
     }
 }

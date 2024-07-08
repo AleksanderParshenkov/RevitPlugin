@@ -149,27 +149,27 @@ namespace FilterNavis.ViewModels
         {
             if (storageType == StorageType.Double || storageType == StorageType.Integer)
             {
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Равно) // 0 - равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Equals) // 0 - равно
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) == double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_равно) // 1 - не равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotEquals) // 1 - не равно
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) != double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Больше) // 2 - больше
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.More) // 2 - больше
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) > double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Больше_или_равно) // 3 - больше или равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.MoreAndEquals) // 3 - больше или равно
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) >= double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Меньше) // 4 - меньше
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Less) // 4 - меньше
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) < double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Меньше_или_равно) // 5 - меньше или равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.LessAndEquals) // 5 - меньше или равно
                 {
                     listElemennts = listElemennts.Where(x => { return double.Parse(x.get_Parameter(a).AsValueString().Split(' ')[0], new CultureInfo("en-GB")) <= double.Parse(value, new CultureInfo("en-GB")); }).ToList();
                 }
@@ -177,43 +177,43 @@ namespace FilterNavis.ViewModels
 
             if (storageType == StorageType.String)
             {
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Равно) // 0 - равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Equals) // 0 - равно
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() == value; }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_равно) // 1 - не равно
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotEquals) // 1 - не равно
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != value; }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Содержит) // 6 - содержит
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Contained) // 6 - содержит
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && x.get_Parameter(a).AsString().Contains(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_содержит) // 7 - не содержит
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotContained) // 7 - не содержит
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() == null || !x.get_Parameter(a).AsString().Contains(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Начинается_с) // 8 - начинается на
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.StartWith) // 8 - начинается на
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && x.get_Parameter(a).AsString().StartsWith(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_начинается_с) // 9 - не начинается на
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotStartWith) // 9 - не начинается на
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && !x.get_Parameter(a).AsString().StartsWith(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Заканчикавется_на) // 10 - заканчивается на
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.EndWith) // 10 - заканчивается на
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && x.get_Parameter(a).AsString().EndsWith(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_заканчивается_на) // 11 - не заканчивается на
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotEndWith) // 11 - не заканчивается на
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && !x.get_Parameter(a).AsString().EndsWith(value); }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Имеет_значение) // 12 - имеет значение
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.HadValue) // 12 - имеет значение
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() != null && x.get_Parameter(a).AsString() != ""; }).ToList();
                 }
-                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.Не_имеет_значение) // 13 - не имеет значение
+                if (filterConditionFullItem == FilterConditionEnum.FilterConditionFull.NotHadValue) // 13 - не имеет значение
                 {
                     listElemennts = listElemennts.Where(x => { return x.get_Parameter(a).AsString() == null || x.get_Parameter(a).AsString() == ""; }).ToList();
                 }
