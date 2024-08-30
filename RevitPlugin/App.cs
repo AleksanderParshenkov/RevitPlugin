@@ -9,16 +9,16 @@ namespace RevitPlugin
     {
         public Result OnStartup(UIControlledApplication application)
         {
-            string tabName = "Plugins";
-            string panelName = "Инструменты";
-            string assemblyName = Assembly.GetExecutingAssembly().Location;
+            //string tabName = "Plugins";
+            //string panelName = "Инструменты";
+            //string assemblyName = Assembly.GetExecutingAssembly().Location;
 
-            application.CreateRibbonTab(tabName);
-            var panel = application.CreateRibbonPanel(tabName, panelName);
+            //application.CreateRibbonTab(tabName);
+            //var panel = application.CreateRibbonPanel(tabName, panelName);
 
-            var newButtonData1 = new PushButtonData("Фильтр\nстрочный", "Фильтр\nстрочный", assemblyName: assemblyName, "RevitPlugin.SelectAll");            
-            ImageMethods.AddImageToButtonData(newButtonData1, Properties.Resources.logo_selectAll);
-            PushButton newButton1 = panel.AddItem(newButtonData1) as PushButton;
+            //var newButtonData1 = new PushButtonData("Фильтр\nстрочный", "Фильтр\nстрочный", assemblyName: assemblyName, "RevitPlugin.SelectAll");            
+            //ImageMethods.AddImageToButtonData(newButtonData1, Properties.Resources.logo_selectAll);
+            //PushButton newButton1 = panel.AddItem(newButtonData1) as PushButton;
             
             //var newButtonData2 = new PushButtonData("Проверка\nимени модуля", "Проверка\nимени модуля", assemblyName: assemblyName, "RevitPlugin.CheckModulName");
             //ImageMethods.AddImageToButtonData(newButtonData2, Properties.Resources.logo_checkModulName);

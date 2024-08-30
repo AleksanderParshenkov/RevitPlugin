@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="CheckModulName.cs" />
+    <Compile Include="RemoveDuplicates.cs" />
     <Compile Include="SelectAll.cs" />
     <Compile Include="ImageMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
