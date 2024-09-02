@@ -26,9 +26,6 @@ namespace RemoveDuplicates
             /// </summary>
             MainController mainController = new MainController(commandData);
 
-            /// <summary>
-            /// Плагином не предусматривается транзакций, изменяющих текущую модели
-            /// </summary>
             return Result.Succeeded;
         }
     }
