@@ -30,6 +30,7 @@ namespace DimensionsControl.Views
         private void btn_CheckDimension_Click(object sender, RoutedEventArgs e)
         {
             CheckController checkController = new CheckController();
+            this.Close();
         }
 
         private void btn_WriteDimension_Click(object sender, RoutedEventArgs e)

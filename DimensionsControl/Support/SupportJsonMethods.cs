@@ -24,8 +24,16 @@ namespace DimensionsControl.Support
             string json = JsonSerializer.Serialize(mydimensionList, options);           
 
             File.WriteAllText(JsonName.MainJsonFileName, json);
+        }
 
+        public static List<MyDimension> Deserialization()
+        {
+            string fileName = JsonName.MainJsonFileName;
+            string jsonString = File.ReadAllText(fileName);
+                                    
+            List<MyDimension> resultList = JsonSerializer.Deserialize<List<MyDimension>>(jsonString);
 
+            return resultList;
         }
     }
 }
