@@ -1,0 +1,31 @@
+﻿<Window x:Class="DimensionsControl.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DimensionsControl.Views"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterScreen"
+             MinHeight="200" MinWidth="250" HorizontalAlignment="Center"             
+             Height="200" Width="250" Title="Контроль размеров">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="btn_CheckDimension"
+                Grid.Row="1" Grid.Column="1"
+                Content="Проверить размеры" Click="btn_CheckDimension_Click"/>
+        <Button Name="btn_WriteDimension"
+                Grid.Row="3" Grid.Column="1"
+                Content="Записать размеры" Click="btn_WriteDimension_Click"/>
+    </Grid>
+</Window>
