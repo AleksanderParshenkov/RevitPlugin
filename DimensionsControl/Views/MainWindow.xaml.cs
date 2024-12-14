@@ -35,6 +35,7 @@ namespace DimensionsControl.Views
         private void btn_WriteDimension_Click(object sender, RoutedEventArgs e)
         {
             WriteController writeController = new WriteController();
+            this.Close();
         }
     }
 }

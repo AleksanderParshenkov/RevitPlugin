@@ -21,9 +21,11 @@ namespace DimensionsControl.Support
                 WriteIndented = true
             };
             
-            string json = JsonSerializer.Serialize(mydimensionList, options);
+            string json = JsonSerializer.Serialize(mydimensionList, options);           
 
-            File.WriteAllText(@"\\picompany.ru\pikp\lib\02_Revit\70_PIKTools\ИОС-ОВ-ВК-ЭОМ-СС\Вспомогательные материалы\Контроль размеров\customers.json", json);
+            File.WriteAllText(JsonName.MainJsonFileName, json);
+
+
         }
     }
 }

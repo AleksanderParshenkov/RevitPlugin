@@ -13,8 +13,8 @@ namespace DimensionsControl.Models
     {
         public int Id { get; set; }
         public int ViewId { get; set; }
-        public string ViewName { get; set; }    
-
+        public string ViewName { get; set; }
+        public string SheetName { get; set; }
 
         public bool ViewInList { get; set; }
         public int SegmentCount { get; set; }
@@ -32,10 +32,19 @@ namespace DimensionsControl.Models
             this.ViewId = dimension.View.Id.IntegerValue;
             this.ViewName = dimension.View.get_Parameter(BuiltInParameter.VIEW_NAME).AsString();
 
+
             // Размещенность размера на листах
             string numberSheet = dimension.View.get_Parameter(BuiltInParameter.VIEWER_SHEET_NUMBER).AsString();
-            if (numberSheet == null || numberSheet == "") this.ViewInList = false;
-            else this.ViewInList = true;
+            if (numberSheet == null || numberSheet == "" || numberSheet == "---")
+            {
+                this.ViewInList = false;
+                this.SheetName = "none";
+            }
+            else 
+            {
+                this.ViewInList = true;
+                this.SheetName = dimension.View.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NAME).AsString();
+            } 
 
 
             // Количество сегментов в размере

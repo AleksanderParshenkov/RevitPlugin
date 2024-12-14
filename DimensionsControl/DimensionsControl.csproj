@@ -90,8 +90,10 @@
     <Compile Include="Models\MyDimension.cs" />
     <Compile Include="Support\CurrentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\JsonName.cs" />
     <Compile Include="Support\SupportCheckModelMethods.cs" />
     <Compile Include="Support\SupportJsonMethods.cs" />
+    <Compile Include="Support\SupportReportMethods.cs" />
     <Compile Include="ViewModels\WriteController.cs" />
     <Compile Include="ViewModels\CheckController.cs" />
     <Compile Include="ViewModels\MainController.cs" />

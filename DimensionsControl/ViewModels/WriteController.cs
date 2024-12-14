@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DimensionsControl.Views;
 using Autodesk.Revit.DB;
 using DimensionsControl.Support;
+using System.IO;
 
 namespace DimensionsControl.ViewModels
 {
@@ -32,16 +33,17 @@ namespace DimensionsControl.ViewModels
                 myDimensionList.Add(myDimension);
             }
 
+            // Получение и запись статических имен json файлов
+            JsonName.GetJsonFileName();
+
+            // Запись отчета изменения файла в отдельном txt. Добавление строки ДатаВремя_User_Количество размеров
+            SupportReportMethods.WriteStringLine(myDimensionList.Count());            
+
+            // Сериализация json
             SupportJsonMethods.Serialization(myDimensionList);
 
 
-
-
-
-
-            MessageBox.Show(string.Join(";\n", myDimensionList.Select(x => (x.SegmentCount.ToString() + " " + x.Id))));
-
-
+            //MessageBox.Show(string.Join(";\n", myDimensionList.Select(x => (x.SegmentCount.ToString() + " " + x.Id))));
         }
     }
 }
