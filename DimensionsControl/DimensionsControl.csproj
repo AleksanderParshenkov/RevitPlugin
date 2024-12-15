@@ -87,18 +87,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Models\ItemToDataGrid.cs" />
     <Compile Include="Models\MyDimension.cs" />
+    <Compile Include="Models\ReportDimensions.cs" />
     <Compile Include="Support\CurrentModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\JsonName.cs" />
     <Compile Include="Support\SupportCheckModelMethods.cs" />
     <Compile Include="Support\SupportJsonMethods.cs" />
     <Compile Include="Support\SupportReportMethods.cs" />
+    <Compile Include="ViewModels\CreateController.cs" />
+    <Compile Include="ViewModels\DeleteController.cs" />
     <Compile Include="ViewModels\WriteController.cs" />
     <Compile Include="ViewModels\CheckController.cs" />
     <Compile Include="ViewModels\MainController.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportDataGridWindow.xaml.cs">
+      <DependentUpon>ReportDataGridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportMessageWindow.xaml.cs">
+      <DependentUpon>ReportMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportWarningWriteWindow.xaml.cs">
+      <DependentUpon>ReportWarningWriteWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +123,18 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportDataGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReportWarningWriteWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

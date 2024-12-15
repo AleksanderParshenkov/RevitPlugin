@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using DimensionsControl.Views;
 using Autodesk.Revit.DB;
 using DimensionsControl.Support;
+using System.Collections.ObjectModel;
 
 namespace DimensionsControl.ViewModels
 {
@@ -47,9 +48,31 @@ namespace DimensionsControl.ViewModels
                 if (!myDimensionList.Select(x => x.Id).Contains(myDimensionFromJson.Id)) wrongMyDimensionList.Add(myDimensionFromJson);
             }
 
+            ReportDimensions.ReportDimensionList = wrongMyDimensionList;
+
+            // Отчет пользователю
+            if (wrongMyDimensionList.Count == 0)
+            {
+                ReportMessageWindow reportMessageWindow = new ReportMessageWindow();
+            }                
+            else
+            {
+                // Подготавливаем коллекцию для DataGrid
+                // Создаем пустую коллекцию как ресурс для ДатаГрид
+                var itemsSourceDataGrid = new ObservableCollection<ItemToDataGrid>();
+                foreach (var dimension in wrongMyDimensionList) 
+                {
+                    ItemToDataGrid itemToDataGrid = new ItemToDataGrid();
+                    itemToDataGrid.GetParamItemToDataGrid(dimension);
+                    itemsSourceDataGrid.Add(itemToDataGrid);
+                }
 
 
-
+                // Показываем пользователю окно с отчетом по удаленным размерам
+                ReportDataGridWindow reportDataGridWindow = new ReportDataGridWindow();
+                reportDataGridWindow.DGR.ItemsSource = itemsSourceDataGrid;
+                reportDataGridWindow.Show();
+            }
 
             //MessageBox.Show(wrongMyDimensionList.Count().ToString());
             //MessageBox.Show(string.Join(";\n", myDimensionsFronJsonList.Select(x => (x.SegmentCount.ToString() + " " + x.Id))));

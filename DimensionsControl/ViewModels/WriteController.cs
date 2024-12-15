@@ -19,6 +19,9 @@ namespace DimensionsControl.ViewModels
     {
         public WriteController()
         {
+            // Показываем предупреждение пользователю
+            ReportWarningWriteWindow reportWarningWriteWindow = new ReportWarningWriteWindow();
+
             // Получаем список всех линейных размеров из модели
             List <Dimension> dimensionList = SupportCheckModelMethods.GetAllDimensionsFromModel();
 

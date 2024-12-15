@@ -12,6 +12,9 @@ namespace DimensionsControl.Models
     public class MyDimension
     {
         public int Id { get; set; }
+        public FamilySymbol FamilySymbol { get; set; }
+        public View View { get; set; }
+
         public int ViewId { get; set; }
         public string ViewName { get; set; }
         public string SheetName { get; set; }
@@ -29,8 +32,13 @@ namespace DimensionsControl.Models
         {
             // Запись Id размера, Id вида и имя вида, на котором он размещен
             this.Id = dimension.Id.IntegerValue;
+            this.View = dimension.View;
+
+            //this.FamilySymbol = dimension.Get
+
             this.ViewId = dimension.View.Id.IntegerValue;
             this.ViewName = dimension.View.get_Parameter(BuiltInParameter.VIEW_NAME).AsString();
+            
 
 
             // Размещенность размера на листах

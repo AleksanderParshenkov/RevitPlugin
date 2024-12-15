@@ -1,0 +1,43 @@
+﻿<Window x:Class="DimensionsControl.Views.ReportDataGridWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DimensionsControl.Views"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterScreen"
+             MinHeight="600" MinWidth="1000" HorizontalAlignment="Center"             
+             Height="600" Width="1000" Title="Найденные несоответствия">        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="DGR" Margin="5,5,5,5"
+                  CanUserResizeColumns="True"
+                  CanUserAddRows="False"
+                  CanUserResizeRows="False"
+                  AutoGenerateColumns="False"
+                  Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Значения" Binding="{Binding ValueString}"/>
+                <DataGridTextColumn Header="Cегментов" Binding="{Binding SegmentCount}" />
+                <DataGridTextColumn Header="Имя вида" Binding="{Binding ViewName}" />
+                <DataGridTextColumn Header="Имя листа" Binding="{Binding SheetName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btn_Create" Content="Создать элементы"
+                Grid.Row="2"
+                Grid.Column="1"
+                Margin="2,0,2,2" Click="btn_Create_Click"/>
+        <Button x:Name="btn_Delete" Content="Удалить элементы"
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="2,0,2,2" Click="btn_Delete_Click"/>
+    </Grid>
+</Window>
