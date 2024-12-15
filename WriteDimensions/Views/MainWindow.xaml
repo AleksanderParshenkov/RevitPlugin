@@ -1,0 +1,30 @@
+﻿<Window x:Class="WriteDimensions.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WriteDimensions.Views"
+             mc:Ignorable="d" 
+             WindowStartupLocation="CenterScreen"
+             MinHeight="200" MinWidth="250" HorizontalAlignment="Center"             
+             Height="200" Width="250" Title="Предупреждение">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Будет выполнена перезапись "
+                   Grid.Column="1" Grid.Row="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="btn_AproveWrite" Content="Выполнить перезапись"
+                Grid.Column="1" Grid.Row="3" Click="btn_AproveWrite_Click" />
+    </Grid>
+</Window>

@@ -1,8 +1,8 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.UI;
-using CheckDimensions.ViewModels;
+using WriteDimensions.ViewModels;
 
-namespace CheckDimensions
+namespace WriteDimensions
 {
     [Transaction(TransactionMode.Manual)]
     public class App : IExternalCommand
