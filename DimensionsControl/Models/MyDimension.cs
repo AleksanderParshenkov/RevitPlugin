@@ -13,7 +13,7 @@ namespace DimensionsControl.Models
     {
         public int Id { get; set; }
         public FamilySymbol FamilySymbol { get; set; }
-        public View View { get; set; }
+        //public View View { get; set; }
 
         public int ViewId { get; set; }
         public string ViewName { get; set; }
@@ -31,8 +31,7 @@ namespace DimensionsControl.Models
         public void GetParamMyDimension(Dimension dimension)
         {
             // Запись Id размера, Id вида и имя вида, на котором он размещен
-            this.Id = dimension.Id.IntegerValue;
-            this.View = dimension.View;
+            this.Id = dimension.Id.IntegerValue;            
 
             //this.FamilySymbol = dimension.Get
 

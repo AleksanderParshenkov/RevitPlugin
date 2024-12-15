@@ -96,8 +96,6 @@
     <Compile Include="Support\SupportCheckModelMethods.cs" />
     <Compile Include="Support\SupportJsonMethods.cs" />
     <Compile Include="Support\SupportReportMethods.cs" />
-    <Compile Include="ViewModels\CreateController.cs" />
-    <Compile Include="ViewModels\DeleteController.cs" />
     <Compile Include="ViewModels\WriteController.cs" />
     <Compile Include="ViewModels\CheckController.cs" />
     <Compile Include="ViewModels\MainController.cs" />

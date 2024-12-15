@@ -25,15 +25,5 @@ namespace DimensionsControl.Views
         {
             InitializeComponent();
         }
-
-        private void btn_Create_Click(object sender, RoutedEventArgs e)
-        {
-            CreateController createController = new CreateController();
-        }
-
-        private void btn_Delete_Click(object sender, RoutedEventArgs e)
-        {
-            DeleteController deleteController = new DeleteController();
-        }
     }
 }

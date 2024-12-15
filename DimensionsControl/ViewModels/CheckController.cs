@@ -12,6 +12,7 @@ using DimensionsControl.Views;
 using Autodesk.Revit.DB;
 using DimensionsControl.Support;
 using System.Collections.ObjectModel;
+using Autodesk.Revit.Creation;
 
 namespace DimensionsControl.ViewModels
 {
@@ -73,9 +74,6 @@ namespace DimensionsControl.ViewModels
                 reportDataGridWindow.DGR.ItemsSource = itemsSourceDataGrid;
                 reportDataGridWindow.Show();
             }
-
-            //MessageBox.Show(wrongMyDimensionList.Count().ToString());
-            //MessageBox.Show(string.Join(";\n", myDimensionsFronJsonList.Select(x => (x.SegmentCount.ToString() + " " + x.Id))));
         }
     }
 }
