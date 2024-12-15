@@ -15,7 +15,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckModulName", "CheckModu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveDuplicates", "RemoveDuplicates\RemoveDuplicates.csproj", "{A2E83F9C-0AC0-4AB8-BC1A-AEBE85DE33DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DimensionsControl", "DimensionsControl\DimensionsControl.csproj", "{2307641A-1CDE-4480-AEC4-07BE6B9376B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteDimensions", "DimensionsControl\WriteDimensions.csproj", "{2307641A-1CDE-4480-AEC4-07BE6B9376B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckDimensions", "CheckDimensions\CheckDimensions.csproj", "{D99BEFCA-CCDF-4F17-91F7-47C296DFD870}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{2307641A-1CDE-4480-AEC4-07BE6B9376B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2307641A-1CDE-4480-AEC4-07BE6B9376B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2307641A-1CDE-4480-AEC4-07BE6B9376B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99BEFCA-CCDF-4F17-91F7-47C296DFD870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99BEFCA-CCDF-4F17-91F7-47C296DFD870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99BEFCA-CCDF-4F17-91F7-47C296DFD870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99BEFCA-CCDF-4F17-91F7-47C296DFD870}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
