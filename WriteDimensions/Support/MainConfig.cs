@@ -8,6 +8,6 @@ namespace WriteDimensions.Support
 {
     public static class MainConfig
     {
-        public static bool IsAproove { get; set; } 
+        public static bool IsAproove { get; set; }         
     }
 }

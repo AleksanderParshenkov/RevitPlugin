@@ -12,10 +12,12 @@ namespace WriteDimensions.ViewModels
             // Получение и запись информации о текущей модели
             CurrentModel.GetParamCurrentModel(commandData);
 
+            MainConfig.IsAproove = false;
+
             // Создание экземпляра основного интерфейса (окна)
             MainWindow Wnd = new MainWindow();
 
-            if (MainConfig.IsAproove) { WriteController writeController = new WriteController(); }
+            if (MainConfig.IsAproove == true) { WriteController writeController = new WriteController(); }
             else { }
         }
     }
