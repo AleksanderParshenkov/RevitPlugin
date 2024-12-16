@@ -30,6 +30,6 @@
                 <DataGridTextColumn Header="Имя вида" Binding="{Binding ViewName}" />
                 <DataGridTextColumn Header="Имя листа" Binding="{Binding SheetName}" />
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>        
     </Grid>
 </Window>

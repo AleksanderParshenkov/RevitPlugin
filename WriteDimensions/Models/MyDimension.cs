@@ -28,6 +28,10 @@ namespace WriteDimensions.Models
         public List<XYZ> TextPositionList { get; set; }
 
 
+        public List<double> TextPositionXList { get; set; }
+        public List<double> TextPositionYList { get; set; }
+        public List<double> TextPositionZList { get; set; }
+
         public void GetParamMyDimension(Dimension dimension)
         {
             // Запись Id размера, Id вида и имя вида, на котором он размещен
@@ -61,6 +65,11 @@ namespace WriteDimensions.Models
             this.ValueList = new List<double?>();
             this.ValueStringList = new List<string>();
             this.TextPositionList = new List<XYZ>();
+            this.TextPositionXList = new List<double>();
+            this.TextPositionYList = new List<double>();
+            this.TextPositionZList = new List<double>();
+
+
 
             // Получение массива позиций текста, дюймовых и стринговых значений  
             if (this.SegmentCount == 1)
@@ -68,6 +77,10 @@ namespace WriteDimensions.Models
                 this.TextPositionList.Add(dimension.TextPosition);
                 this.ValueList.Add(dimension.Value);
                 this.ValueStringList.Add(dimension.ValueString);
+
+                TextPositionXList.Add(dimension.TextPosition.X);
+                TextPositionYList.Add(dimension.TextPosition.Y);
+                TextPositionZList.Add(dimension.TextPosition.Z);
             }
             else
             {
@@ -77,6 +90,13 @@ namespace WriteDimensions.Models
                     this.TextPositionList.Add(dimensionSegment.TextPosition);
                     this.ValueList.Add(dimensionSegment.Value);
                     this.ValueStringList.Add(dimensionSegment.ValueString);
+                }
+
+                foreach (var textPosition in TextPositionList)
+                {
+                    TextPositionXList.Add(textPosition.X);
+                    TextPositionYList.Add(textPosition.Y);
+                    TextPositionZList.Add(textPosition.Z);
                 }
             }
         }

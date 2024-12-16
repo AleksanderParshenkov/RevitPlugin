@@ -26,8 +26,14 @@ namespace CheckDimensions.Support
         {
             string fileName = JsonName.MainJsonFileName;
             string jsonString = File.ReadAllText(fileName);
-                                    
-            List<MyDimension> resultList = JsonSerializer.Deserialize<List<MyDimension>>(jsonString);
+
+            var options = new JsonSerializerOptions
+            {
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),
+                WriteIndented = true
+            };
+
+            List<MyDimension> resultList = JsonSerializer.Deserialize<List<MyDimension>>(jsonString, options);
 
             return resultList;
         }

@@ -6,25 +6,32 @@
              xmlns:local="clr-namespace:WriteDimensions.Views"
              mc:Ignorable="d" 
              WindowStartupLocation="CenterScreen"
-             MinHeight="200" MinWidth="250" HorizontalAlignment="Center"             
-             Height="200" Width="250" Title="Предупреждение">
+             ResizeMode="NoResize"
+             MinHeight="200" MinWidth="350" HorizontalAlignment="Center"             
+             Height="250" Width="400" Title="Предупреждение">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
             <RowDefinition/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Будет выполнена перезапись "
-                   Grid.Column="1" Grid.Row="1"
-                   VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="btn_AproveWrite" Content="Выполнить перезапись"
-                Grid.Column="1" Grid.Row="3" Click="btn_AproveWrite_Click" />
+        <TextBlock Text="ВНИМАНИЕ"
+                   Grid.Column="1" Grid.Row="0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Foreground="#FFC57547"/>
+        <TextBlock Text="Будет выполнена перезапись размеров в базе данных, используемой для сверки размеров" TextWrapping="Wrap"
+                   Grid.Column="1" Grid.Row="1" TextAlignment="Center"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="14"/>
+        <TextBlock Text="Перезапись следует запускать тогда, когда Вы уверены в количестве текущих размеров на листах" TextWrapping="Wrap"
+                   Grid.Column="1" Grid.Row="2" TextAlignment="Center"
+                   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontSize="14" />
+        <Button x:Name="btn_AproveWrite" Content="Согласен. Перезаписать размеры"
+                Grid.Column="1" Grid.Row="3" Click="btn_AproveWrite_Click"
+                Margin="5,5,5,5" FontSize="16"/>
     </Grid>
 </Window>

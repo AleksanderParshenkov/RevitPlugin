@@ -23,21 +23,25 @@ namespace CheckDimensions.Models
         public int SegmentCount { get; set; }
 
 
-        public List <double?> ValueList { get; set; }
-        public List <string> ValueStringList { get; set; }        
+        public List<double?> ValueList { get; set; }
+        public List<string> ValueStringList { get; set; }
         public List<XYZ> TextPositionList { get; set; }
 
+
+        public List<double> TextPositionXList { get; set; }
+        public List<double> TextPositionYList { get; set; }
+        public List<double> TextPositionZList { get; set; }
 
         public void GetParamMyDimension(Dimension dimension)
         {
             // Запись Id размера, Id вида и имя вида, на котором он размещен
-            this.Id = dimension.Id.IntegerValue;            
+            this.Id = dimension.Id.IntegerValue;
 
             //this.FamilySymbol = dimension.Get
 
             this.ViewId = dimension.View.Id.IntegerValue;
             this.ViewName = dimension.View.get_Parameter(BuiltInParameter.VIEW_NAME).AsString();
-            
+
 
 
             // Размещенность размера на листах
@@ -47,11 +51,11 @@ namespace CheckDimensions.Models
                 this.ViewInList = false;
                 this.SheetName = "none";
             }
-            else 
+            else
             {
                 this.ViewInList = true;
                 this.SheetName = dimension.View.get_Parameter(BuiltInParameter.VIEWPORT_SHEET_NAME).AsString();
-            } 
+            }
 
 
             // Количество сегментов в размере
@@ -61,6 +65,11 @@ namespace CheckDimensions.Models
             this.ValueList = new List<double?>();
             this.ValueStringList = new List<string>();
             this.TextPositionList = new List<XYZ>();
+            this.TextPositionXList = new List<double>();
+            this.TextPositionYList = new List<double>();
+            this.TextPositionZList = new List<double>();
+
+
 
             // Получение массива позиций текста, дюймовых и стринговых значений  
             if (this.SegmentCount == 1)
@@ -68,6 +77,10 @@ namespace CheckDimensions.Models
                 this.TextPositionList.Add(dimension.TextPosition);
                 this.ValueList.Add(dimension.Value);
                 this.ValueStringList.Add(dimension.ValueString);
+
+                TextPositionXList.Add(dimension.TextPosition.X);
+                TextPositionYList.Add(dimension.TextPosition.Y);
+                TextPositionZList.Add(dimension.TextPosition.Z);
             }
             else
             {
@@ -77,6 +90,13 @@ namespace CheckDimensions.Models
                     this.TextPositionList.Add(dimensionSegment.TextPosition);
                     this.ValueList.Add(dimensionSegment.Value);
                     this.ValueStringList.Add(dimensionSegment.ValueString);
+                }
+
+                foreach (var textPosition in TextPositionList)
+                {
+                    TextPositionXList.Add(textPosition.X);
+                    TextPositionYList.Add(textPosition.Y);
+                    TextPositionZList.Add(textPosition.Z);
                 }
             }
         }
