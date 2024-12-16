@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WriteDimensions.Support;
 
 namespace WriteDimensions.Views
 {
@@ -28,6 +29,8 @@ namespace WriteDimensions.Views
 
         private void btn_AproveWrite_Click(object sender, RoutedEventArgs e)
         {
+            MainConfig.IsAproove=true;
+
             this.Close();
         }
     }

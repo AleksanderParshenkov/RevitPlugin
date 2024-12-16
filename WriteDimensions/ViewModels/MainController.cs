@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.UI;
 using WriteDimensions.Models;
+using WriteDimensions.Support;
 using WriteDimensions.Views;
 
 namespace WriteDimensions.ViewModels
@@ -14,7 +15,8 @@ namespace WriteDimensions.ViewModels
             // Создание экземпляра основного интерфейса (окна)
             MainWindow Wnd = new MainWindow();
 
-            WriteController writeController = new WriteController();
+            if (MainConfig.IsAproove) { WriteController writeController = new WriteController(); }
+            else { }
         }
     }
 }
