@@ -39,13 +39,26 @@ namespace CheckDimensions.ViewModels
             List<MyDimension> myDimensionsFromJsonList = SupportJsonMethods.Deserialization();
 
             // Сравнение полученных размеров из json с размерами из модеди
+            // Получаем список видов текущей модели
+            // Поиск вида
+            FilteredElementCollector viewCollector = new FilteredElementCollector(CurrentModel.Doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_Views);
+            List<View> currentViewList = viewCollector.Select(x=> x as  View).ToList(); 
+
             // Получаем список размеров из json, которым не найдена пара в модели
             List<MyDimension> wrongMyDimensionList = new List<MyDimension>();   
+            List<MyDimension> wrongMyDimensionDeletedViewList = new List<MyDimension>();
+
             foreach (MyDimension myDimensionFromJson in myDimensionsFromJsonList)
             {
-                if (!myDimensionList.Select(x => x.Id).Contains(myDimensionFromJson.Id)) wrongMyDimensionList.Add(myDimensionFromJson);
+                if (!currentViewList.Select(x => x.Id.IntegerValue).Contains(myDimensionFromJson.ViewId))
+                {
+                    wrongMyDimensionDeletedViewList.Add(myDimensionFromJson);
+                }
+                else
+                {
+                    if (!myDimensionList.Select(x => x.Id).Contains(myDimensionFromJson.Id)) wrongMyDimensionList.Add(myDimensionFromJson);
+                }
             }
-
 
             //***
 
@@ -54,7 +67,7 @@ namespace CheckDimensions.ViewModels
                 .OfClass(typeof(FamilySymbol))
                 .OfCategory(BuiltInCategory.OST_DetailComponents);
             FamilySymbol elementType = elementCollector
-                .FirstOrDefault(x => x.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString() == "Контроль размеров") as FamilySymbol;
+                .FirstOrDefault(x => x.get_Parameter(BuiltInParameter.SYMBOL_NAME_PARAM).AsString() == "DC_Указатель контроля размеров") as FamilySymbol;
 
 
             // Транзакция            
@@ -62,11 +75,21 @@ namespace CheckDimensions.ViewModels
             {
                 tr.Start();
 
+                // Удаление указателей размеров
+                FilteredElementCollector elementCollector2 = new FilteredElementCollector(CurrentModel.Doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DetailComponents);
+                List<Element> elementToDeleteList = elementCollector2.Where(x => x.get_Parameter(BuiltInParameter.ELEM_FAMILY_PARAM).AsValueString() == "DC_Указатель контроля размеров").ToList();
+                foreach (Element elementToDelete in elementToDeleteList)
+                {
+                    ElementId elementId = elementToDelete.Id;
+                    CurrentModel.Doc.Delete(elementId);
+                }
+
+
                 foreach (MyDimension dimension in wrongMyDimensionList) 
                 {
                     // Поиск вида
                     FilteredElementCollector elementCollector1 = new FilteredElementCollector(CurrentModel.Doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_Views);
-                    View elementView = elementCollector1.FirstOrDefault(x => x.Name == dimension.ViewName) as View;
+                    View elementView = elementCollector1.FirstOrDefault(x => x.Id.IntegerValue == dimension.ViewId) as View;
 
 
                     for (int i = 0; i < dimension.TextPositionList.Count(); i++)
@@ -76,17 +99,22 @@ namespace CheckDimensions.ViewModels
                         //Создает элемент узла
                         Element newElement = CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
 
-                        // BS_Вид
-                        Parameter bs_View = newElement.get_Parameter(new Guid("df1b9a2d-bb0d-47b8-8a49-3a529fccfb47"));
-                        bs_View.Set(dimension.ViewName);
+                        //CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
+                        // Вид - BS_Вид
+                        Parameter BS_View = newElement.get_Parameter(new Guid("df1b9a2d-bb0d-47b8-8a49-3a529fccfb47"));
+                        BS_View.Set(dimension.ViewName);
 
-                        // Длина
+                        // Длина - BS_Марка
+                        Parameter BS_Mark = newElement.get_Parameter(new Guid("7d8b77eb-64e0-424c-b11b-ce21ceec4ea9"));
+                        BS_Mark.Set(dimension.ValueStringList[i]);
 
-                        // Количество сегментов
+                        // Количество сегментов - BS_Примечание
+                        Parameter BS_Prim = newElement.get_Parameter(new Guid("941bc7a1-a062-406d-83f7-fd177760f277"));
+                        BS_Prim.Set(dimension.SegmentCount.ToString());
 
-                        // Имя листа
-                        
-
+                        // Имя листа - комментарий
+                        Parameter comment = newElement.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS);
+                        comment.Set(dimension.SheetName);
                     }
                 }
 
@@ -94,20 +122,14 @@ namespace CheckDimensions.ViewModels
             }
             //***
 
-
-
-
-
-
-
-
-
             ReportDimensions.ReportDimensionList = wrongMyDimensionList;
 
             // Отчет пользователю
             // Подготавливаем коллекцию для DataGrid
             // Создаем пустую коллекцию как ресурс для ДатаГрид
+            var itemsSourceFromDeletedViewDataGrid = new ObservableCollection<ItemToDataGrid>();
             var itemsSourceDataGrid = new ObservableCollection<ItemToDataGrid>();
+
             foreach (var dimension in wrongMyDimensionList)
             {
                 ItemToDataGrid itemToDataGrid = new ItemToDataGrid();
@@ -115,8 +137,17 @@ namespace CheckDimensions.ViewModels
                 itemsSourceDataGrid.Add(itemToDataGrid);
             }
 
+            foreach (var dimension in wrongMyDimensionDeletedViewList)
+            {
+                ItemToDataGrid itemToDataGrid = new ItemToDataGrid();
+                itemToDataGrid.GetParamItemToDataGrid(dimension);
+                itemsSourceFromDeletedViewDataGrid.Add(itemToDataGrid);
+            }
+
+
             // Показываем пользователю окно с отчетом по удаленным размерам
             MainWindow reportDataGridWindow = new MainWindow();
+            reportDataGridWindow.DGRD.ItemsSource = itemsSourceFromDeletedViewDataGrid;
             reportDataGridWindow.DGR.ItemsSource = itemsSourceDataGrid;
             reportDataGridWindow.Show();
         }

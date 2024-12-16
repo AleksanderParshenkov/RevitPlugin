@@ -10,26 +10,50 @@
              Height="600" Width="1000" Title="Найденные несоответствия">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
             <RowDefinition/>
             <RowDefinition Height="30"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="DGR" Margin="5,5,5,5"
+        <TextBlock Text="Таблица размеров, которые удалены на удаленных видах"
+                   Grid.Row="0" Margin="5,5,5,5"  VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="DGRD" Margin="5,5,5,5"
                   CanUserResizeColumns="True"
                   CanUserAddRows="False"
                   CanUserResizeRows="False"
                   AutoGenerateColumns="False"
-                  Grid.ColumnSpan="3">
+                  Grid.ColumnSpan="3"
+                  Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Значения" Binding="{Binding ValueString}"/>
                 <DataGridTextColumn Header="Cегментов" Binding="{Binding SegmentCount}" />
                 <DataGridTextColumn Header="Имя вида" Binding="{Binding ViewName}" />
                 <DataGridTextColumn Header="Имя листа" Binding="{Binding SheetName}" />
             </DataGrid.Columns>
-        </DataGrid>        
+        </DataGrid>
+        <TextBlock Text="Таблица размеров, которые удалены на существующих видах"
+                   Grid.Row="2" Margin="5,5,5,5" VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="DGR" Margin="5,5,5,5"
+                  CanUserResizeColumns="True"
+                  CanUserAddRows="False"
+                  CanUserResizeRows="False"
+                  AutoGenerateColumns="False"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Значения" Binding="{Binding ValueString}"/>
+                <DataGridTextColumn Header="Cегментов" Binding="{Binding SegmentCount}" />
+                <DataGridTextColumn Header="Имя вида" Binding="{Binding ViewName}" />
+                <DataGridTextColumn Header="Имя листа" Binding="{Binding SheetName}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="По итогам работы плагина на видах смоделированы указатели контроля удаленных размеров. Не забудьте после работы над восстановлением размеров удалить указатели и перезаписать размеры"
+                   Grid.Row="4" TextWrapping="Wrap" Margin="5,5,5,5"  VerticalAlignment="Top" Grid.ColumnSpan="3"/>
     </Grid>
 </Window>

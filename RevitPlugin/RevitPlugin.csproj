@@ -38,6 +38,7 @@
     <WarningLevel>4</WarningLevel>
     <StartAction>Program</StartAction>
     <StartProgram>$(ProgramW6432)\Autodesk\Revit 2019\Revit.exe</StartProgram>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -58,6 +59,9 @@
     <Compile Include="App.cs" />
     <Compile Include="CheckModulName.cs" />
     <Compile Include="RemoveDuplicates.cs" />
+    <Compile Include="DeleteFakeDimension.cs" />
+    <Compile Include="CheckDimensions.cs" />
+    <Compile Include="WriteDimensions.cs" />
     <Compile Include="SelectAll.cs" />
     <Compile Include="ImageMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,15 +83,27 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CheckDimensions\CheckDimensions.csproj">
+      <Project>{d99befca-ccdf-4f17-91f7-47c296dfd870}</Project>
+      <Name>CheckDimensions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CheckModulName\CheckModulName.csproj">
       <Project>{8e6dc615-a66c-469a-ad6e-ac6749d076b1}</Project>
       <Name>CheckModulName</Name>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\DeleteFakeDimension\DeleteFakeDimension.csproj">
+      <Project>{8cf3b573-8553-4690-9beb-70531b5f9df8}</Project>
+      <Name>DeleteFakeDimension</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SelectAll\SelectAll.csproj">
       <Project>{bf558964-b17f-4cd9-a968-6d9f7ce93f0b}</Project>
       <Name>SelectAll</Name>
       <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\WriteDimensions\WriteDimensions.csproj">
+      <Project>{2a52eab1-4c8c-485e-8015-f9231b2f7e51}</Project>
+      <Name>WriteDimensions</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
