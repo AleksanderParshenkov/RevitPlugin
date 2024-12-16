@@ -72,7 +72,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\logo_selectAll.png" />
+    <Resource Include="Resources\CheckDimensions.png" />
+    <Resource Include="Resources\CheckModulName.png" />
+    <Resource Include="Resources\DeleteFakeDimensions.png" />
+    <Resource Include="Resources\SelectAll.png" />
+    <Resource Include="Resources\WriteDimensions.png" />
     <Resource Include="Resources\logo_checkModulName.png" />
     <Content Include="RevitPlugin.addin" />
   </ItemGroup>

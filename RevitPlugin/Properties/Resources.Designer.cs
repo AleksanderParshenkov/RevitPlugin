@@ -63,6 +63,36 @@ namespace RevitPlugin.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CheckDimensions {
+            get {
+                object obj = ResourceManager.GetObject("CheckDimensions", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap CheckModulName {
+            get {
+                object obj = ResourceManager.GetObject("CheckModulName", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DeleteFakeDimensions {
+            get {
+                object obj = ResourceManager.GetObject("DeleteFakeDimensions", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logo_checkModulName {
             get {
                 object obj = ResourceManager.GetObject("logo_checkModulName", resourceCulture);
@@ -73,9 +103,19 @@ namespace RevitPlugin.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_selectAll {
+        internal static System.Drawing.Bitmap SelectAll {
             get {
-                object obj = ResourceManager.GetObject("logo_selectAll", resourceCulture);
+                object obj = ResourceManager.GetObject("SelectAll", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WriteDimensions {
+            get {
+                object obj = ResourceManager.GetObject("WriteDimensions", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
