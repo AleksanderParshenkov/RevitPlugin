@@ -8,8 +8,9 @@ namespace CheckDimensions.ViewModels
     {
         public MainController(ExternalCommandData commandData)
         {
-            // Получение и запись информации о текущей модели
+            // Получение и запись информации о текущей модели//
             CurrentModel.GetParamCurrentModel(commandData);
+
 
             CheckController checkController = new CheckController();
         }
