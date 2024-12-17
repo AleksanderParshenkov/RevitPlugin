@@ -91,33 +91,37 @@ namespace CheckDimensions.ViewModels
                     FilteredElementCollector elementCollector1 = new FilteredElementCollector(CurrentModel.Doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_Views);
                     View elementView = elementCollector1.FirstOrDefault(x => x.Id.IntegerValue == dimension.ViewId) as View;
 
-
-                    for (int i = 0; i < dimension.TextPositionList.Count(); i++)
+                    ///****
+                    if (elementType != null) 
                     {
-                        XYZ xyz = new XYZ(dimension.TextPositionXList[i], dimension.TextPositionYList[i], dimension.TextPositionZList[i]);
+                        if (elementType.IsActive == false) { elementType.Activate(); }
 
-                        //Создает элемент узла
-                        Element newElement = CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
+                        for (int i = 0; i < dimension.TextPositionList.Count(); i++)
+                        {
+                            XYZ xyz = new XYZ(dimension.TextPositionXList[i], dimension.TextPositionYList[i], dimension.TextPositionZList[i]);
 
-                        //CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
-                        // Вид - BS_Вид
-                        Parameter BS_View = newElement.get_Parameter(new Guid("df1b9a2d-bb0d-47b8-8a49-3a529fccfb47"));
-                        BS_View.Set(dimension.ViewName);
+                            //Создает элемент узла
+                            Element newElement = CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
 
-                        // Длина - BS_Марка
-                        Parameter BS_Mark = newElement.get_Parameter(new Guid("7d8b77eb-64e0-424c-b11b-ce21ceec4ea9"));
-                        BS_Mark.Set(dimension.ValueStringList[i]);
+                            //CurrentModel.Doc.Create.NewFamilyInstance(xyz, elementType, elementView);
+                            // Вид - BS_Вид
+                            Parameter BS_View = newElement.get_Parameter(new Guid("df1b9a2d-bb0d-47b8-8a49-3a529fccfb47"));
+                            BS_View.Set(dimension.ViewName);
 
-                        // Количество сегментов - BS_Примечание
-                        Parameter BS_Prim = newElement.get_Parameter(new Guid("941bc7a1-a062-406d-83f7-fd177760f277"));
-                        BS_Prim.Set(dimension.SegmentCount.ToString());
+                            // Длина - BS_Марка
+                            Parameter BS_Mark = newElement.get_Parameter(new Guid("7d8b77eb-64e0-424c-b11b-ce21ceec4ea9"));
+                            BS_Mark.Set(dimension.ValueStringList[i]);
 
-                        // Имя листа - комментарий
-                        Parameter comment = newElement.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS);
-                        comment.Set(dimension.SheetName);
-                    }
+                            // Количество сегментов - BS_Примечание
+                            Parameter BS_Prim = newElement.get_Parameter(new Guid("941bc7a1-a062-406d-83f7-fd177760f277"));
+                            BS_Prim.Set(dimension.SegmentCount.ToString());
+
+                            // Имя листа - комментарий
+                            Parameter comment = newElement.get_Parameter(BuiltInParameter.ALL_MODEL_INSTANCE_COMMENTS);
+                            comment.Set(dimension.SheetName);
+                        }
+                    }                    
                 }
-
                 tr.Commit();
             }
             //***
