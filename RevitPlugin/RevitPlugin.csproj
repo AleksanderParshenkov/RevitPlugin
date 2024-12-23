@@ -61,6 +61,7 @@
     <Compile Include="RemoveDuplicates.cs" />
     <Compile Include="DeleteFakeDimension.cs" />
     <Compile Include="CheckDimensions.cs" />
+    <Compile Include="AllRevitServers.cs" />
     <Compile Include="WriteDimensions.cs" />
     <Compile Include="SelectAll.cs" />
     <Compile Include="ImageMethods.cs" />
@@ -78,6 +79,7 @@
     <Resource Include="Resources\SelectAll.png" />
     <Resource Include="Resources\WriteDimensions.png" />
     <Resource Include="Resources\logo_checkModulName.png" />
+    <Resource Include="Resources\AllRevitServers.png" />
     <Content Include="RevitPlugin.addin" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +89,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AllRevitServers\AllRevitServers.csproj">
+      <Project>{92a87bc2-ac23-4192-a37f-6bb62d75b833}</Project>
+      <Name>AllRevitServers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CheckDimensions\CheckDimensions.csproj">
       <Project>{d99befca-ccdf-4f17-91f7-47c296dfd870}</Project>
       <Name>CheckDimensions</Name>

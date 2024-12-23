@@ -36,6 +36,10 @@ namespace RevitPlugin
             ImageMethods.AddImageToButtonData(newButtonData5, Properties.Resources.DeleteFakeDimensions);
             PushButton newButton5 = panel.AddItem(newButtonData5) as PushButton;
 
+            var newButtonData6 = new PushButtonData("Revit\nсерверы", "Revit\nсерверы", assemblyName: assemblyName, "RevitPlugin.AllRevitServers");
+            ImageMethods.AddImageToButtonData(newButtonData6, Properties.Resources.AllRevitServers);
+            PushButton newButton6 = panel.AddItem(newButtonData6) as PushButton;
+
             return Result.Succeeded;
         }
         public Result OnShutdown(UIControlledApplication application)

@@ -63,6 +63,16 @@ namespace RevitPlugin.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AllRevitServers {
+            get {
+                object obj = ResourceManager.GetObject("AllRevitServers", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap CheckDimensions {
             get {
                 object obj = ResourceManager.GetObject("CheckDimensions", resourceCulture);

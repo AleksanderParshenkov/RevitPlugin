@@ -101,4 +101,9 @@ namespace CheckDimensions.Models
             }
         }
     }
+
+    public class ChangeDimension : MyDimension
+    {        
+        public List<string> CurrentValueStringList { get; set; }
+    }
 }
