@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitPlugin", "RevitPlugin\RevitPlugin.csproj", "{EE818720-6B6B-497D-8B96-26F355049C7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterNavis", "FilterNavis\FilterNavis.csproj", "{DA58BC43-1075-4FE9-9A2C-D862759D6488}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilterNavis_arch", "FilterNavis\FilterNavis_arch.csproj", "{DA58BC43-1075-4FE9-9A2C-D862759D6488}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SelectAll", "SelectAll\SelectAll.csproj", "{BF558964-B17F-4CD9-A968-6D9F7CE93F0B}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteFakeDimension", "DeleteFakeDimension\DeleteFakeDimension.csproj", "{8CF3B573-8553-4690-9BEB-70531B5F9DF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllRevitServers", "AllRevitServers\AllRevitServers.csproj", "{92A87BC2-AC23-4192-A37F-6BB62D75B833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFilter", "QuickFilter\QuickFilter.csproj", "{48619592-DD4D-4937-829B-B781A4BCA429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomAffiliation", "RoomAffiliation\RoomAffiliation.csproj", "{F176289A-7ACA-4962-9F40-06A1A4AE81AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48619592-DD4D-4937-829B-B781A4BCA429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48619592-DD4D-4937-829B-B781A4BCA429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48619592-DD4D-4937-829B-B781A4BCA429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48619592-DD4D-4937-829B-B781A4BCA429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

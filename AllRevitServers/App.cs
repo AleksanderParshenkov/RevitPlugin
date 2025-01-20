@@ -25,8 +25,6 @@ namespace AllRevitServers
             {
                 MessageBox.Show("Не выполнено. Отсутствуют права доступа");
             }            
-
-
             return Result.Succeeded;
         }
     }  

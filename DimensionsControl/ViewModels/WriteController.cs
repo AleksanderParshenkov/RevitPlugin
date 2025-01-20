@@ -1,17 +1,9 @@
-﻿using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Events;
+﻿using Autodesk.Revit.DB;
 using DimensionsControl.Models;
-using DimensionsControl;
-using System;
+using DimensionsControl.Support;
+using DimensionsControl.Views;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DimensionsControl.Views;
-using Autodesk.Revit.DB;
-using DimensionsControl.Support;
-using System.IO;
 
 namespace DimensionsControl.ViewModels
 {
