@@ -1,10 +1,9 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Events;
-using RoomAffiliation.Models;
 using RoomAffiliation.Support;
-using System;
+using RoomAffiliation.Models;
+using RoomAffiliation.Views;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -25,8 +24,16 @@ namespace RoomAffiliation.Controllers
                 .Where(instance => RevitLinkType.IsLoaded(CurrentModel.Doc, instance.GetTypeId()))
                 .Select(x => (RevitLinkInstance)x);
 
-            // Получение RevitLinkInstance АР (временно)
-            var link = elementsCollectorCurrentModel.FirstOrDefault().GetTotalTransform();
+            // Выдача основного окна 
+            MainWindow wnd = new MainWindow();
+            wnd.cmb_LinkedModels.ItemsSource = elementsCollectorCurrentModel;            
+            wnd.ShowDialog();
+
+            
+
+
+
+            var link = LinkModel.LinkInstance.GetTotalTransform();
 
             // Получение корректировки координат
             var transformXLink = link.Origin.X;
@@ -93,7 +100,7 @@ namespace RoomAffiliation.Controllers
                 formRoomList.Add (formRoom);
             }
 
-            MessageBox.Show(string.Join("; ", formRoomList.Select(x=> x.Zmin)));
+            MessageBox.Show(string.Join("; ", formRoomList.Select(x=> x.Zmax)));
 
 
 

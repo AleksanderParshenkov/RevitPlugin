@@ -1,9 +1,6 @@
-﻿using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Autodesk.Revit.UI;
 
-namespace RoomAffiliation.Models
+namespace RoomAffiliation.Support
 {
     public static class CurrentModel
     {
@@ -27,7 +24,6 @@ namespace RoomAffiliation.Models
             Doc = UiDoc.Document;
             CurrentModulName = Doc.Title;
             CurrentUser = App.Username;
-        }
-        
+        }        
     }
 }

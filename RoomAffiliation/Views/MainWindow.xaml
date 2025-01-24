@@ -1,0 +1,121 @@
+﻿<Window x:Class="RoomAffiliation.Views.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RoomAffiliation.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" 
+        
+             WindowStartupLocation="CenterScreen"
+             MinHeight="450" MinWidth="450" HorizontalAlignment="Center"
+             Height="450" Width="600" Title="Принадлежность к помещению">
+    <Window.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="#294979"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="3"/>            
+            <Setter Property="Background" Value="#294979"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>            
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Row="0"
+                  Header="Связанная модель с помещениями"
+                  Margin="5,5,5,5">
+            <ComboBox x:Name="cmb_LinkedModels"
+                      DisplayMemberPath ="Name"/>
+
+        </GroupBox>
+        <GroupBox Grid.Row="1"
+                  Header="Настройка соответствия параметров"                  
+                  Margin="5,5,5,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <CheckBox x:Name ="cb_ActiveRow1"
+                          Grid.Row="1" Grid.Column="0"/>
+                <CheckBox x:Name ="cb_ActiveRow2"
+                          Grid.Row="2" Grid.Column="0"/>
+                <CheckBox x:Name ="cb_ActiveRow3"
+                          Grid.Row="3" Grid.Column="0"/>
+                <CheckBox x:Name ="cb_ActiveRow4"
+                          Grid.Row="4" Grid.Column="0"/>
+                <CheckBox x:Name ="cb_ActiveRow5"
+                          Grid.Row="5" Grid.Column="0"/>
+                
+                <TextBlock Text="Параметр помещения"
+                           Grid.Row="0" Grid.Column="1"/>  
+                <TextBox Text=""
+                         Grid.Row="1" Grid.Column="1"/>
+                <TextBox Text=""
+                         Grid.Row="2" Grid.Column="1"/>
+                <TextBox Text=""
+                         Grid.Row="3" Grid.Column="1"/>
+                <TextBox Text=""
+                         Grid.Row="4" Grid.Column="1"/>
+                <TextBox Text=""
+                         Grid.Row="5" Grid.Column="1"/>
+
+                <TextBlock Text="Параметр элемента"
+                           Grid.Row="0" Grid.Column="2"/>
+                <TextBox Text=""
+                         Grid.Row="1" Grid.Column="2"/>
+                <TextBox Text=""
+                         Grid.Row="2" Grid.Column="2"/>
+                <TextBox Text=""
+                         Grid.Row="3" Grid.Column="2"/>
+                <TextBox Text=""
+                         Grid.Row="4" Grid.Column="2"/>
+                <TextBox Text=""
+                         Grid.Row="5" Grid.Column="2"/>
+
+                <Button x:Name="btn_SaveConfigJson"
+                        Content="СОХРАНИТЬ КАК"
+                        Grid.Row="6" Grid.Column="1"/>
+                <Button x:Name="btn_GetConfigJson"
+                        Content="ЗАГРУЗИТЬ"
+                        Grid.Row="6" Grid.Column="2"/>
+            </Grid>
+            
+        </GroupBox>        
+        
+        <Button Grid.Row="2"
+                x:Name="btn_WriteAffiliation"
+                Content="ЗАПИСАТЬ ПРИНАДЛЕЖНОСТЬ" Click="btn_WriteAffiliation_Click"/>
+    </Grid>
+</Window>
