@@ -23,9 +23,18 @@ namespace RoomAffiliation.Controllers
                 spatOpts.StoreFreeBoundaryFaces = true;
                 var boundarySegmentsList = room.GetBoundarySegments(spatOpts);
 
+                // Создание пустого списка отрезков границ помещения
                 List<RoomAffiliation.Models.LineSegment> lineSegmentList = new List<RoomAffiliation.Models.LineSegment>();
-                
 
+                // Создание экстремумов точек границ помещения 
+                int index = 0;
+                double XminRoom = 0;
+                double XmaxRoom = 0;
+                double YminRoom = 0;
+                double YmaxRoom = 0;
+                double ZminRoom = 0;                
+
+                // Заполнение списка отрезков границ помещения
                 if (null != boundarySegmentsList)  //Проверка есть ли сегменты
                 {
                     foreach (IList<Autodesk.Revit.DB.BoundarySegment> segmentList in boundarySegmentsList)
@@ -44,12 +53,67 @@ namespace RoomAffiliation.Controllers
                                 boundarySegment.GetCurve().GetEndPoint(1).Y,
                                 boundarySegment.GetCurve().GetEndPoint(1).Z);
 
+                            // Добавление отрезка в список отрезков
                             lineSegmentList.Add(lineSegment);
+
+                            // Создание переменных экстремумов отрезка границы
+                            double Xmin;
+                            double Xmax;
+                            double Ymin;
+                            double Ymax;
+                            double Zmin;
+                            double Zmax;
+
+                            // Назначение Xmin и Xmax
+                            if (lineSegment.startPoint.X < lineSegment.endPoint.X) Xmin = lineSegment.startPoint.X;
+                            else Xmin = lineSegment.endPoint.X;
+                            if (lineSegment.startPoint.X > lineSegment.endPoint.X) Xmax = lineSegment.startPoint.X;
+                            else Xmax = lineSegment.endPoint.X;
+
+                            // Назначение Xmin и Xmax
+                            if (lineSegment.startPoint.Y < lineSegment.endPoint.Y) Ymin = lineSegment.startPoint.Y;
+                            else Ymin = lineSegment.endPoint.Y;
+                            if (lineSegment.startPoint.Y > lineSegment.endPoint.Y) Ymax = lineSegment.startPoint.Y;
+                            else Ymax = lineSegment.endPoint.Y;
+
+                            // Назначение Xmin и Xmax
+                            if (lineSegment.startPoint.Z < lineSegment.endPoint.Z) Zmin = lineSegment.startPoint.Z;
+                            else Zmin = lineSegment.endPoint.Z;
+                            if (lineSegment.startPoint.Z > lineSegment.endPoint.Z) Zmax = lineSegment.startPoint.Z;
+                            else Zmax = lineSegment.endPoint.Z;
+                            
+                            // Первичное назначение экстремумов и переназначение
+                            if (index == 0)
+                            {
+                                XminRoom = Xmin; XmaxRoom = Xmax;
+                                YminRoom = Ymin; YmaxRoom = Ymax;
+                                ZminRoom = Zmin; 
+                            }
+                            else
+                            {
+                                if (Xmin < XminRoom) XminRoom = Xmin;
+                                if (Xmax > XmaxRoom) XmaxRoom = Xmax;
+
+                                if (Ymin < YminRoom) YminRoom = Ymin;
+                                if (Ymax > YmaxRoom) YmaxRoom = Ymax;
+
+                                if (Zmin < ZminRoom) ZminRoom = Zmin;                                
+                            }
+
+                            // Добаление к индексу (+1).
+                            index++;                           
                         }
                     }
                 }
 
-                MessageBox.Show(lineSegmentList.Count.ToString());
+                double ZmaxRoom = ZminRoom +  room.get_Parameter(BuiltInParameter.ROOM_HEIGHT).AsDouble();
+
+                /// Перебор списка элементов.
+                /// Фильтрация элементов, точка вставки которых находится в объеме помещения
+                
+
+
+                MessageBox.Show($"{XminRoom};{YminRoom};{ZminRoom}" + "\n" + $"{XmaxRoom};{YmaxRoom};{ZmaxRoom}");
             }
         }
     }
