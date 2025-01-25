@@ -61,55 +61,44 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30"/>
+                <Grid.ColumnDefinitions>                    
                     <ColumnDefinition/>
                     <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>                
                 
-                <CheckBox x:Name ="cb_ActiveRow1"
-                          Grid.Row="1" Grid.Column="0"/>
-                <CheckBox x:Name ="cb_ActiveRow2"
-                          Grid.Row="2" Grid.Column="0"/>
-                <CheckBox x:Name ="cb_ActiveRow3"
-                          Grid.Row="3" Grid.Column="0"/>
-                <CheckBox x:Name ="cb_ActiveRow4"
-                          Grid.Row="4" Grid.Column="0"/>
-                <CheckBox x:Name ="cb_ActiveRow5"
-                          Grid.Row="5" Grid.Column="0"/>
                 
                 <TextBlock Text="Параметр помещения"
-                           Grid.Row="0" Grid.Column="1"/>  
-                <TextBox Text=""
-                         Grid.Row="1" Grid.Column="1"/>
-                <TextBox Text=""
-                         Grid.Row="2" Grid.Column="1"/>
-                <TextBox Text=""
-                         Grid.Row="3" Grid.Column="1"/>
-                <TextBox Text=""
-                         Grid.Row="4" Grid.Column="1"/>
-                <TextBox Text=""
-                         Grid.Row="5" Grid.Column="1"/>
+                           Grid.Row="0" Grid.Column="0"/>  
+                <TextBox x:Name="tb_ParameterRoom_1"
+                         Grid.Row="1" Grid.Column="0"/>
+                <TextBox x:Name="tb_ParameterRoom_2"
+                         Grid.Row="2" Grid.Column="0"/>
+                <TextBox x:Name="tb_ParameterRoom_3"
+                         Grid.Row="3" Grid.Column="0"/>
+                <TextBox x:Name="tb_ParameterRoom_4"
+                         Grid.Row="4" Grid.Column="0"/>
+                <TextBox x:Name="tb_ParameterRoom_5"
+                         Grid.Row="5" Grid.Column="0"/>
 
                 <TextBlock Text="Параметр элемента"
-                           Grid.Row="0" Grid.Column="2"/>
-                <TextBox Text=""
-                         Grid.Row="1" Grid.Column="2"/>
-                <TextBox Text=""
-                         Grid.Row="2" Grid.Column="2"/>
-                <TextBox Text=""
-                         Grid.Row="3" Grid.Column="2"/>
-                <TextBox Text=""
-                         Grid.Row="4" Grid.Column="2"/>
-                <TextBox Text=""
-                         Grid.Row="5" Grid.Column="2"/>
+                           Grid.Row="0" Grid.Column="1"/>
+                <TextBox x:Name="tb_ParameterElement_1"
+                         Grid.Row="1" Grid.Column="1"/>
+                <TextBox x:Name="tb_ParameterElement_2"
+                         Grid.Row="2" Grid.Column="1"/>
+                <TextBox x:Name="tb_ParameterElement_3"
+                         Grid.Row="3" Grid.Column="1"/>
+                <TextBox x:Name="tb_ParameterElement_4"
+                         Grid.Row="4" Grid.Column="1"/>
+                <TextBox x:Name="tb_ParameterElement_5"
+                         Grid.Row="5" Grid.Column="1"/>
 
                 <Button x:Name="btn_SaveConfigJson"
                         Content="СОХРАНИТЬ КАК"
-                        Grid.Row="6" Grid.Column="1"/>
+                        Grid.Row="6" Grid.Column="0"/>
                 <Button x:Name="btn_GetConfigJson"
                         Content="ЗАГРУЗИТЬ"
-                        Grid.Row="6" Grid.Column="2"/>
+                        Grid.Row="6" Grid.Column="1"/>
             </Grid>
             
         </GroupBox>        

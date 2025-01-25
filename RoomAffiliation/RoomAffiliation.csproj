@@ -57,8 +57,12 @@
     <Compile Include="App.cs" />
     <Compile Include="Controllers\GetLinkController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\SetAffiliationRoomController.cs" />
+    <Compile Include="Models\LineSegment.cs" />
+    <Compile Include="Models\ParametersCouple.cs" />
+    <Compile Include="Support\MainConfigParameters.cs" />
+    <Compile Include="Support\MainVIew.cs" />
     <Compile Include="Support\CurrentModel.cs" />
-    <Compile Include="Models\FormRoom.cs" />
     <Compile Include="Support\LinkModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\SupportMethods.cs" />

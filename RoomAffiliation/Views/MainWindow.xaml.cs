@@ -1,5 +1,6 @@
 ﻿using Autodesk.Revit.DB;
 using RoomAffiliation.Controllers;
+using RoomAffiliation.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace RoomAffiliation.Views
     {
         public MainWindow()
         {
+
             InitializeComponent();            
         }
 
@@ -32,6 +34,9 @@ namespace RoomAffiliation.Views
             if (this.cmb_LinkedModels.SelectedItem != null)
             {
                 GetLinkController getLinkController = new GetLinkController(this.cmb_LinkedModels.SelectedItem as RevitLinkInstance);
+
+                MainConfigParameters.ParametersCouple = SupportMethods.GetCoupleParametersList(this);
+
                 this.Close();
             }
         }
