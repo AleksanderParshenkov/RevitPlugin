@@ -42,7 +42,7 @@ namespace RoomAffiliation.Support
         public static List<Element> GetElementListFromCurrentDocument(Document document)
         {
             // Получение списка элементов в текущей модели
-            List <Element> elementListCurrentModel = new FilteredElementCollector(document)
+            List<Element> elementListCurrentModel = new FilteredElementCollector(document)
                 .WhereElementIsNotElementType()
                 .OfCategory(BuiltInCategory.OST_Furniture)
                 .Select(x => x as Element)
@@ -88,6 +88,36 @@ namespace RoomAffiliation.Support
             parametersCouples.Add(parametersCouple_5);
 
             return parametersCouples;
+        }
+
+        public static bool CheckIntersection(Models.LineSegment segment_1, Models.LineSegment segment_2)
+        {
+            // Назначение переменных для выполнения расчета
+            double x1 = segment_1.startPoint.X;
+            double y1 = segment_1.startPoint.Y;
+
+            double x2 = segment_1.endPoint.X;
+            double y2 = segment_1.endPoint.Y;
+
+            double x3 = segment_2.startPoint.X;
+            double y3 = segment_2.startPoint.Y;
+
+            double x4 = segment_2.endPoint.X;
+            double y4 = segment_2.endPoint.Y;
+
+            // Проверка параллельности отрезков
+            double k1 = (x2 - x1) / (y2 - y1);
+            double k2 = (x4 - x3) / (y4 - y3);
+            if (k1 == k2) { return false; }
+            
+            // Нахождение пересечения прямых
+            double X= ((x1 * y2 - x2 * y1) * (x4 - x3) - (x3 * y4 - x4 * y3) * (x2 - x1)) / ((y1 - y2) * (x4 - x3) - (y3 - y4) * (x2 - x1));
+            double Y = ((y3 - y4) * X - (x3 * y4 - x4 * y3)) / (x4 - x3);
+
+            // Проверка нахождения точки пересечения на отрезках
+            if ((((x1 <= X)&&(x2 >= X)&&(x3 <= X)&&(x4 >= X)) || ((y1 <= Y) && (y2 >= Y) && (y3 <= Y) && (y4 >= Y)))) { return true; }
+
+            return false;
         }
     }
 }

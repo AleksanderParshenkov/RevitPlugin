@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.UI;
+using RoomAffiliation.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -110,10 +111,46 @@ namespace RoomAffiliation.Controllers
 
                 /// Перебор списка элементов.
                 /// Фильтрация элементов, точка вставки которых находится в объеме помещения
-                
+                foreach (var element in elementList)
+                {
+                    // Получение точки вставки элемента
+                    LocationPoint locationPointElement = element.Location as LocationPoint;
+                    XYZ startPointElement = locationPointElement.Point;
+
+                    // Получение конечной точки элемента (вторая точка отрезка элемента) 
+                    XYZ endPointElement = new XYZ(startPointElement.X, YmaxRoom + 1, startPointElement.Z);
+
+                    // Формирование отрезка проверки
+                    Models.LineSegment elementLineSegment = new Models.LineSegment()
+                    {
+                        startPoint = startPointElement,
+                        endPoint = endPointElement,
+                    };
 
 
-                MessageBox.Show($"{XminRoom};{YminRoom};{ZminRoom}" + "\n" + $"{XmaxRoom};{YmaxRoom};{ZmaxRoom}");
+                    /// Проверка должна быть произведена для каждого отрезка границы помещения
+                    /// Проверка на пересечение отрезков
+
+                    int intersectionCount = 0;
+
+                    foreach (var roomLineSegment in lineSegmentList)
+                    {
+
+                        bool isIntersection = SupportMethods.CheckIntersection(roomLineSegment, elementLineSegment);
+
+                        if (isIntersection)
+                        {
+                            intersectionCount++;
+                        }
+                    }
+
+                    if (intersectionCount % 2 == 1) { MessageBox.Show($"Элемент {element.Id}" + "\n" + $"Помещение {room.Id}"); }
+                    else
+                    {
+                        MessageBox.Show($"Не в помещении");
+                    }
+                }
+                //MessageBox.Show($"{elementLineSegment.startPoint}" + "\n" + $"{elementLineSegment.endPoint}");
             }
         }
     }
