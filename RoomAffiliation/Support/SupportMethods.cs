@@ -238,5 +238,48 @@ namespace RoomAffiliation.Support
                 }
             }
         }
+
+        public static List<Element> DeleteValueParameters (List<Element> elements)
+        {
+            using (Transaction tr = new Transaction(CurrentModel.Doc, "Принадлежность помещений"))
+            {
+                tr.Start();
+
+                List<ParametersCouple> parametersCoupeleList = MainConfigParameters.ParametersCouple
+                    .Where(x => x.RoomParameter != "" && x.ElementParameter != "")
+                    .ToList();
+
+                foreach (var element in elements)
+                {
+                    foreach (var parameterCoupele in parametersCoupeleList)
+                    {
+                        // Получение значения параметра помещения
+                        Parameter parameterElement = element.LookupParameter(parameterCoupele.ElementParameter);
+
+                        if (parameterElement.StorageType == StorageType.String)
+                        {
+                            parameterElement.Set("");
+                        }
+                        if (parameterElement.StorageType == StorageType.Integer)
+                        {
+                            parameterElement.Set(0);
+                        }
+                        if (parameterElement.StorageType == StorageType.Double)
+                        {
+                            parameterElement.Set(0);
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                }
+
+                
+                tr.Commit();
+            }
+
+            return elements;
+        }
     }
 }

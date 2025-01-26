@@ -124,42 +124,45 @@ namespace RoomAffiliation.Controllers
                     // Получение конечной точки элемента (вторая точка отрезка элемента) 
                     XYZ endPointElement = new XYZ(startPointElement.X, YmaxRoom + 1, startPointElement.Z);
 
-                    // Формирование отрезка проверки
-                    Models.LineSegment elementLineSegment = new Models.LineSegment()
+                    if (startPointElement.Z >= ZminRoom && startPointElement.Z <= ZmaxRoom) 
                     {
-                        startPoint = startPointElement,
-                        endPoint = endPointElement,
-                    };
-
-
-                    /// Проверка должна быть произведена для каждого отрезка границы помещения
-                    /// Проверка на пересечение отрезков
-
-                    int intersectionCount = 0;
-
-                    foreach (var roomLineSegment in lineSegmentList)
-                    {
-
-                        bool isIntersection = SupportMethods.CheckIntersection(roomLineSegment, elementLineSegment);
-
-                        if (isIntersection)
+                        // Формирование отрезка проверки
+                        Models.LineSegment elementLineSegment = new Models.LineSegment()
                         {
-                            intersectionCount++;
-                        }
-                    }
-
-                    // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
-                    if (intersectionCount % 2 == 1) 
-                    {
-                        AffiliationSituation affiliationSituation = new AffiliationSituation()
-                        {
-                            room = room,
-                            element = element,
+                            startPoint = startPointElement,
+                            endPoint = endPointElement,
                         };
-                        affiliationSituationList.Add(affiliationSituation);
-                    }
 
-                    TransactionController transactionController = new TransactionController(affiliationSituationList);
+
+                        /// Проверка должна быть произведена для каждого отрезка границы помещения
+                        /// Проверка на пересечение отрезков
+
+                        int intersectionCount = 0;
+
+                        foreach (var roomLineSegment in lineSegmentList)
+                        {
+
+                            bool isIntersection = SupportMethods.CheckIntersection(roomLineSegment, elementLineSegment);
+
+                            if (isIntersection)
+                            {
+                                intersectionCount++;
+                            }
+                        }
+
+                        // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
+                        if (intersectionCount % 2 == 1)
+                        {
+                            AffiliationSituation affiliationSituation = new AffiliationSituation()
+                            {
+                                room = room,
+                                element = element,
+                            };
+                            affiliationSituationList.Add(affiliationSituation);
+                        }
+
+                        TransactionController transactionController = new TransactionController(affiliationSituationList);
+                    }  
                 }                
             }
         }

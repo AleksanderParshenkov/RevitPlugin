@@ -36,6 +36,10 @@ namespace RoomAffiliation.Controllers
             // Получение списка элементов текущей модели
             List <Element> elementList = SupportMethods.GetElementListFromCurrentDocument(CurrentModel.Doc);
 
+            // Удаление значений параметров элементов, указанных в конфиге
+            elementList = SupportMethods.DeleteValueParameters(elementList);
+
+
             // Создание контроллера определения и записи принадлежности помещений элементам
             SetAffiliationRoomController setAffiliationRoomController = new SetAffiliationRoomController(roomList, elementList);
         }
