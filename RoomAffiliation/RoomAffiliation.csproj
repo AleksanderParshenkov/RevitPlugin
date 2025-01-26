@@ -58,6 +58,8 @@
     <Compile Include="Controllers\GetLinkController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SetAffiliationRoomController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Models\AffiliationSituation.cs" />
     <Compile Include="Models\LineSegment.cs" />
     <Compile Include="Models\ParametersCouple.cs" />
     <Compile Include="Support\MainConfigParameters.cs" />

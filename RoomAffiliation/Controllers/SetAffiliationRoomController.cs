@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB.Architecture;
 using Autodesk.Revit.UI;
 using RoomAffiliation.Support;
+using RoomAffiliation.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,9 @@ namespace RoomAffiliation.Controllers
     {
         public SetAffiliationRoomController(List<Room> roomList, List<Element> elementList)
         {
+            // Создание пустого списка ситуаций принадлежности
+            List <AffiliationSituation> affiliationSituationList = new List<AffiliationSituation> ();
+
             /// Необходимо получить отрезки границ с координатами для каждого помещения.
             foreach (Room room in roomList)
             {
@@ -144,13 +148,19 @@ namespace RoomAffiliation.Controllers
                         }
                     }
 
-                    if (intersectionCount % 2 == 1) { MessageBox.Show($"Элемент {element.Id}" + "\n" + $"Помещение {room.Id}"); }
-                    else
+                    // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
+                    if (intersectionCount % 2 == 1) 
                     {
-                        MessageBox.Show($"Не в помещении");
+                        AffiliationSituation affiliationSituation = new AffiliationSituation()
+                        {
+                            room = room,
+                            element = element,
+                        };
+                        affiliationSituationList.Add(affiliationSituation);
                     }
-                }
-                //MessageBox.Show($"{elementLineSegment.startPoint}" + "\n" + $"{elementLineSegment.endPoint}");
+
+                    TransactionController transactionController = new TransactionController(affiliationSituationList);
+                }                
             }
         }
     }
