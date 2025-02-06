@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFilter", "QuickFilter\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomAffiliation", "RoomAffiliation\RoomAffiliation.csproj", "{F176289A-7ACA-4962-9F40-06A1A4AE81AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filter", "Filter\Filter.csproj", "{2A626A6C-C416-440B-A8C3-27ABC627326B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
