@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomAffiliation", "RoomAffi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filter", "Filter\Filter.csproj", "{2A626A6C-C416-440B-A8C3-27ABC627326B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterMerging", "ParameterMerging\ParameterMerging.csproj", "{8EA17B03-1901-462B-AF81-01FE1B4C0612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyLibrary", "FamilyLibrary\FamilyLibrary.csproj", "{20ED3047-330D-4EC7-B972-82EF9EB28893}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20ED3047-330D-4EC7-B972-82EF9EB28893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20ED3047-330D-4EC7-B972-82EF9EB28893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20ED3047-330D-4EC7-B972-82EF9EB28893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20ED3047-330D-4EC7-B972-82EF9EB28893}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
