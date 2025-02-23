@@ -95,10 +95,10 @@
 
                 <Button x:Name="btn_SaveConfigJson"
                         Content="СОХРАНИТЬ КАК"
-                        Grid.Row="6" Grid.Column="0"/>
+                        Grid.Row="6" Grid.Column="0" Click="btn_SaveConfigJson_Click"/>
                 <Button x:Name="btn_GetConfigJson"
                         Content="ЗАГРУЗИТЬ"
-                        Grid.Row="6" Grid.Column="1"/>
+                        Grid.Row="6" Grid.Column="1" Click="btn_GetConfigJson_Click"/>
             </Grid>
             
         </GroupBox>        

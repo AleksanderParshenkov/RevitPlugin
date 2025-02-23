@@ -14,15 +14,17 @@ namespace RoomAffiliation.Controllers
 {
     public class SetAffiliationRoomController
     {
-        public SetAffiliationRoomController(List<Room> roomList, List<Element> elementList)
+        public SetAffiliationRoomController(List<Room> roomList, List<Element> elementList, Transform transform)
         {
+            MessageBox.Show(transform.Origin.ToString());
+
             // Создание пустого списка ситуаций принадлежности
             List <AffiliationSituation> affiliationSituationList = new List<AffiliationSituation> ();
 
             /// Необходимо получить отрезки границ с координатами для каждого помещения.
             foreach (Room room in roomList)
             {
-                // Формирование орции получения сегментов помещения
+                // Формирование опции получения сегментов помещения
                 var spatOpts = new SpatialElementBoundaryOptions();
                 spatOpts.SpatialElementBoundaryLocation = SpatialElementBoundaryLocation.Finish;
                 spatOpts.StoreFreeBoundaryFaces = true;
@@ -49,14 +51,14 @@ namespace RoomAffiliation.Controllers
                             Models.LineSegment lineSegment = new Models.LineSegment();
 
                             lineSegment.startPoint = new XYZ(
-                                boundarySegment.GetCurve().GetEndPoint(0).X,
-                                boundarySegment.GetCurve().GetEndPoint(0).Y,
-                                boundarySegment.GetCurve().GetEndPoint(0).Z);
+                                boundarySegment.GetCurve().GetEndPoint(0).X + transform.Origin.X,
+                                boundarySegment.GetCurve().GetEndPoint(0).Y + transform.Origin.Y,
+                                boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
 
                             lineSegment.endPoint = new XYZ(
-                                boundarySegment.GetCurve().GetEndPoint(1).X,
-                                boundarySegment.GetCurve().GetEndPoint(1).Y,
-                                boundarySegment.GetCurve().GetEndPoint(1).Z);
+                                boundarySegment.GetCurve().GetEndPoint(1).X + transform.Origin.X,
+                                boundarySegment.GetCurve().GetEndPoint(1).Y + transform.Origin.Y,
+                                boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
 
                             // Добавление отрезка в список отрезков
                             lineSegmentList.Add(lineSegment);
@@ -75,13 +77,13 @@ namespace RoomAffiliation.Controllers
                             if (lineSegment.startPoint.X > lineSegment.endPoint.X) Xmax = lineSegment.startPoint.X;
                             else Xmax = lineSegment.endPoint.X;
 
-                            // Назначение Xmin и Xmax
+                            // Назначение Ymin и Ymax
                             if (lineSegment.startPoint.Y < lineSegment.endPoint.Y) Ymin = lineSegment.startPoint.Y;
                             else Ymin = lineSegment.endPoint.Y;
                             if (lineSegment.startPoint.Y > lineSegment.endPoint.Y) Ymax = lineSegment.startPoint.Y;
                             else Ymax = lineSegment.endPoint.Y;
 
-                            // Назначение Xmin и Xmax
+                            // Назначение Zmin и Zmax
                             if (lineSegment.startPoint.Z < lineSegment.endPoint.Z) Zmin = lineSegment.startPoint.Z;
                             else Zmin = lineSegment.endPoint.Z;
                             if (lineSegment.startPoint.Z > lineSegment.endPoint.Z) Zmax = lineSegment.startPoint.Z;
@@ -142,7 +144,7 @@ namespace RoomAffiliation.Controllers
                         foreach (var roomLineSegment in lineSegmentList)
                         {
 
-                            bool isIntersection = SupportMethods.CheckIntersection(roomLineSegment, elementLineSegment);
+                            bool isIntersection = SupportMethods.CheckIntersection(roomLineSegment, elementLineSegment,transform);
 
                             if (isIntersection)
                             {

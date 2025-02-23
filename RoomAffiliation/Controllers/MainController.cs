@@ -11,7 +11,7 @@ namespace RoomAffiliation.Controllers
 {
     public class MainController
     {
-        public MainController(ExternalCommandData commandData) 
+        public MainController(ExternalCommandData commandData)
         {
             // Получение и запись информации о текущей модели.
             CurrentModel.GetParamCurrentModel(commandData);
@@ -29,19 +29,18 @@ namespace RoomAffiliation.Controllers
             MainVIew.MainWindow.cmb_LinkedModels.ItemsSource = linksCollectorCurrentModel;
             MainVIew.WriteStartValues();
             MainVIew.MainWindow.ShowDialog();
-                        
+
             // Получение списка помещений из связанной модели. 
             List<Room> roomList = SupportMethods.GetRoomListFromLinkDocument(LinkModel.LinkInstanceDocument);
 
             // Получение списка элементов текущей модели
-            List <Element> elementList = SupportMethods.GetElementListFromCurrentDocument(CurrentModel.Doc);
+            List<Element> elementList = SupportMethods.GetElementListFromCurrentDocument(CurrentModel.Doc);
 
             // Удаление значений параметров элементов, указанных в конфиге
             elementList = SupportMethods.DeleteValueParameters(elementList);
 
-
             // Создание контроллера определения и записи принадлежности помещений элементам
-            SetAffiliationRoomController setAffiliationRoomController = new SetAffiliationRoomController(roomList, elementList);
+            SetAffiliationRoomController setAffiliationRoomController = new SetAffiliationRoomController(roomList, elementList, LinkModel.Transform);
         }
     }
 }

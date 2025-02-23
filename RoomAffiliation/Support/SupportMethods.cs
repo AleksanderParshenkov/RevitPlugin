@@ -42,14 +42,21 @@ namespace RoomAffiliation.Support
         }
         public static List<Element> GetElementListFromCurrentDocument(Document document)
         {
-            // Получение списка элементов в текущей модели
-            List<Element> elementListCurrentModel = new FilteredElementCollector(document)
-                .WhereElementIsNotElementType()
-                .OfCategory(BuiltInCategory.OST_Furniture)
-                .Select(x => x as Element)
-                .ToList();
+            List <Element> resultList = new List<Element>();
 
-            return elementListCurrentModel;
+            foreach (var item in CorrectBuiltInCategoryList._categories)
+            {
+                // Получение списка элементов в текущей модели
+                List<Element> elementListCurrentModel = new FilteredElementCollector(document)
+                    .WhereElementIsNotElementType()
+                    .OfCategory(item)
+                    .Select(x => x as Element)
+                    .ToList();
+
+                foreach(var element in elementListCurrentModel) resultList.Add((Element)element);
+            }
+
+            return resultList;
         }
 
         public static List<ParametersCouple> GetCoupleParametersList(MainWindow wnd)
@@ -91,7 +98,7 @@ namespace RoomAffiliation.Support
             return parametersCouples;
         }
 
-        public static bool CheckIntersection(Models.LineSegment segment_1, Models.LineSegment segment_2)
+        public static bool CheckIntersection(Models.LineSegment segment_1, Models.LineSegment segment_2, Transform transform)
         {
             // Первичное создание переменных
             double Ax = 0;
