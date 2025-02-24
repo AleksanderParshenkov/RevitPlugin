@@ -38,6 +38,8 @@ namespace RoomAffiliation.Views
 
                 MainConfigParameters.ParametersCouple = SupportMethods.GetCoupleParametersList(this);
 
+                //ProcessingController processingController = new ProcessingController();
+
                 this.Close();
             }
         }
