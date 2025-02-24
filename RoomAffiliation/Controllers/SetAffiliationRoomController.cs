@@ -9,14 +9,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace RoomAffiliation.Controllers
 {
     public class SetAffiliationRoomController
     {
-        public SetAffiliationRoomController(List<Room> roomList, List<Element> elementList, Transform transform)
+        public SetAffiliationRoomController(List<Room> roomList, List<Element> elementList, Autodesk.Revit.DB.Transform transform)
         {
-            MessageBox.Show(transform.Origin.ToString());
+            double angleRadian = 0;                     
+
+            double basisXx = 0;
+            double basisXy = 0;
+
+            // Удаление лишних экстремумов
+            if (transform.BasisX.X > 1) basisXx = 1;
+            else if (transform.BasisX.X < -1) basisXx = -1;
+            else basisXx = transform.BasisX.X;
+
+
+            if (transform.BasisX.Y > 1) basisXy = 1;
+            else if (transform.BasisX.Y < -1) basisXy = -1;
+            else basisXy = transform.BasisX.Y;
+
+
+            if (basisXy >= 0) // Верхний полукруг
+            {
+                if (basisXx == 1) angleRadian = 0;
+                else if (basisXx >= 0) angleRadian = Math.Acos(basisXx) + Math.PI * 2 / 4 * 0; // Четверть 1
+                else angleRadian = Math.Acos(basisXx) + Math.PI * 2 / 4 * 0; // Четверть 2
+            }
+            else // Нижний полукруг
+            {
+                if (basisXx == -1) angleRadian = Math.PI * 2 / 4 * 2;
+                else if (basisXx <= 0) angleRadian = Math.PI * 2 / 4 * 2 - Math.Acos(basisXx) + Math.PI * 2 / 4 * 2; // Четверть 3
+                else angleRadian = Math.PI * 2 / 4 - Math.Acos(basisXx) + Math.PI * 2 / 4 * 3; // Четверть 4
+            }
+
+            //MessageBox.Show(angleRadian.ToString() + "\n" + angleGradus.ToString());
+
+
 
             // Создание пустого списка ситуаций принадлежности
             List <AffiliationSituation> affiliationSituationList = new List<AffiliationSituation> ();
@@ -51,14 +83,24 @@ namespace RoomAffiliation.Controllers
                             Models.LineSegment lineSegment = new Models.LineSegment();
 
                             lineSegment.startPoint = new XYZ(
-                                boundarySegment.GetCurve().GetEndPoint(0).X + transform.Origin.X,
-                                boundarySegment.GetCurve().GetEndPoint(0).Y + transform.Origin.Y,
+                                (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
                                 boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
 
                             lineSegment.endPoint = new XYZ(
-                                boundarySegment.GetCurve().GetEndPoint(1).X + transform.Origin.X,
-                                boundarySegment.GetCurve().GetEndPoint(1).Y + transform.Origin.Y,
+                                (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
                                 boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
+
+                            //lineSegment.startPoint = new XYZ(
+                            //    boundarySegment.GetCurve().GetEndPoint(0).X + transform.Origin.X,
+                            //    boundarySegment.GetCurve().GetEndPoint(0).Y + transform.Origin.Y,
+                            //    boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
+
+                            //lineSegment.endPoint = new XYZ(
+                            //    boundarySegment.GetCurve().GetEndPoint(1).X + transform.Origin.X,
+                            //    boundarySegment.GetCurve().GetEndPoint(1).Y + transform.Origin.Y,
+                            //    boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
 
                             // Добавление отрезка в список отрезков
                             lineSegmentList.Add(lineSegment);
