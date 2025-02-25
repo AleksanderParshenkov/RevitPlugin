@@ -13,8 +13,10 @@ namespace RoomAffiliation.Support
         public static Transform Transform { get; set; }
 
         // Эксземпляр класса Document связанной модели
-        public static Document LinkInstanceDocument { get; set; }
+        public static Document LinkInstanceDocument { get; set; }        
 
+        // Получение угла поворота связи
+        public static double AngleRadian { get; set; }
 
         /// <summary>
         /// Заполнение свойств
@@ -27,6 +29,9 @@ namespace RoomAffiliation.Support
 
             // Превращение RevitLinkInstance в Document
             LinkInstanceDocument = LinkInstance.GetLinkDocument();
+
+            // Получение угла поворота связи
+            AngleRadian = SupportMethods.GetAngle(Transform);
         }
     }
 }

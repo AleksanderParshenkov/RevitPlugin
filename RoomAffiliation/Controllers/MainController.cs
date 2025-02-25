@@ -31,27 +31,8 @@ namespace RoomAffiliation.Controllers
             MainVIew.WriteStartValues();
             MainVIew.MainWindow.ShowDialog();
 
-
-            // Получение списка помещений из связанной модели
-            List<Room> roomList = SupportMethods.GetRoomListFromLinkDocument(LinkModel.LinkInstanceDocument);
-
-            // Получение списка элементов текущей модели
-            List<Element> elementList = SupportMethods.GetElementListFromCurrentDocument(CurrentModel.Doc);
-
-            // Удаление значений параметров элементов, указанных в конфиге
-            elementList = SupportMethods.DeleteValueParameters(elementList);
-
-            // Получение предварительных ситуаций
-            List<PredAffiliationSituation> predAffiliationSituationList = SupportMethods.GetPredAffiliationSituationList(roomList, elementList);
-
-            // Получение проверенных ситуаций
-            List<AffiliationSituation> AffiliationSituationList = SupportMethods.GetAffiliationSituationList(predAffiliationSituationList);
-
-            MessageBox.Show(AffiliationSituationList.Count().ToString());
-
-            // Запись принадлежности элементам. Транзакция
-            TransactionController transactionController = new TransactionController(AffiliationSituationList);
-
+            // Перевод на контроллер процесса после работы окна
+            ProcessingController processingController = new ProcessingController();
         }
     }
 }

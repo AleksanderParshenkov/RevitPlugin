@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Architecture;
 using RoomAffiliation.Models;
 using RoomAffiliation.Support;
 using System;
@@ -11,54 +12,44 @@ namespace RoomAffiliation.Controllers
 {
     public class TransactionController
     {
-        public TransactionController(List<AffiliationSituation> affiliationSituationList)
+        public TransactionController(Element element, Room room)
         {
-            using (Transaction tr = new Transaction(CurrentModel.Doc, "Принадлежность помещений"))
-            {
-                tr.Start();
-
-                List<ParametersCouple> parametersCoupeleList = MainConfigParameters.ParametersCouple
-                    .Where(x => x.RoomParameter != "" &&  x.ElementParameter != "")
+            List<ParametersCouple> parametersCoupeleList = MainConfigParameters.ParametersCouple
+                    .Where(x => x.RoomParameter != "" && x.ElementParameter != "")
                     .ToList();
 
-                string value;
+            string value;
 
-                foreach (var situation  in affiliationSituationList)
+            foreach (var parametersCoupe in parametersCoupeleList)
+            {                
+                Parameter parameterRoom = room.LookupParameter(parametersCoupe.RoomParameter);
+
+                if (parameterRoom.StorageType == StorageType.String)
                 {
-                    foreach (var parametersCoupe in parametersCoupeleList)
+                    if (parameterRoom.AsString() != "" || parameterRoom.AsString() != null)
                     {
-                        // Получение значения параметра помещения
-                        Parameter parameterRoom = situation.room.LookupParameter(parametersCoupe.RoomParameter);
-                        
-                        if (parameterRoom.StorageType == StorageType.String)
-                        {
-                            if (parameterRoom.AsString() != "" || parameterRoom.AsString() != null)
-                            {
-                                value = parameterRoom.AsString();
-                            }
-                            else
-                            {
-                                value = parameterRoom.AsValueString();
-                            }
-                            situation.element.LookupParameter(parametersCoupe.ElementParameter).Set(value);                            
-                        }
-                        if (parameterRoom.StorageType == StorageType.Integer)
-                        {
-                            value = parameterRoom.AsInteger().ToString();
-                            situation.element.LookupParameter(parametersCoupe.ElementParameter).Set(int.Parse(value));
-                        }
-                        if (parameterRoom.StorageType == StorageType.Double)
-                        {
-                            value = parameterRoom.AsInteger().ToString();
-                            situation.element.LookupParameter(parametersCoupe.ElementParameter).Set(double.Parse(value));
-                        }
-                        else
-                        {
-
-                        }
+                        value = parameterRoom.AsString();
                     }
+                    else
+                    {
+                        value = parameterRoom.AsValueString();
+                    }
+                    element.LookupParameter(parametersCoupe.ElementParameter).Set(value);
                 }
-                tr.Commit();
+                if (parameterRoom.StorageType == StorageType.Integer)
+                {
+                    value = parameterRoom.AsInteger().ToString();
+                    element.LookupParameter(parametersCoupe.ElementParameter).Set(int.Parse(value));
+                }
+                if (parameterRoom.StorageType == StorageType.Double)
+                {
+                    value = parameterRoom.AsInteger().ToString();
+                    element.LookupParameter(parametersCoupe.ElementParameter).Set(double.Parse(value));
+                }
+                else
+                {
+
+                }
             }
         }
     }
