@@ -1,14 +1,9 @@
-﻿using Microsoft.Win32;
-using RoomAffiliation.Models;
-using System;
+﻿using RoomAffiliation.Models;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Unicode;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 

@@ -91,6 +91,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ProcessingController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\CorrectBuiltInCategoryList.cs" />
     <Compile Include="Models\ExtremumsCoordinateRoom.cs" />
     <Compile Include="Models\LineSegment.cs" />

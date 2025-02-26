@@ -1,14 +1,11 @@
-﻿using Autodesk.Revit.DB.Architecture;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Architecture;
+using RoomAffiliation.Models;
 using RoomAffiliation.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RoomAffiliation.Models;
 using System.Windows;
-using System.Xml.Linq;
 
 namespace RoomAffiliation.Controllers
 {
@@ -16,6 +13,8 @@ namespace RoomAffiliation.Controllers
     {
         public ProcessingController() 
         {
+            DateTime now = DateTime.Now;
+
             using (Transaction tr = new Transaction(CurrentModel.Doc, "Принадлежность помещений"))
             {
                 tr.Start();
@@ -40,9 +39,9 @@ namespace RoomAffiliation.Controllers
                         LocationPoint locationPointElement = x.Location as LocationPoint;
                         XYZ point = locationPointElement.Point;
 
-                        if (point.X >= extremumsAndLineSegments.Xmin && point.X <= extremumsAndLineSegments.Xmax &&
-                            point.Y >= extremumsAndLineSegments.Ymin && point.Y <= extremumsAndLineSegments.Ymax &&
-                            point.Z + 1 >= extremumsAndLineSegments.Zmin && point.Z <= extremumsAndLineSegments.Zmax + 1) return true;
+                        if (point.X >= extremumsAndLineSegments.Xmin - Config.LengthReserve && point.X <= extremumsAndLineSegments.Xmax + Config.LengthReserve &&
+                            point.Y >= extremumsAndLineSegments.Ymin - Config.LengthReserve && point.Y <= extremumsAndLineSegments.Ymax + Config.LengthReserve &&
+                            point.Z + Config.LengthReserve >= extremumsAndLineSegments.Zmin && point.Z <= extremumsAndLineSegments.Zmax + Config.LengthReserve) return true;
                         else return false;
                     }).ToList();
 
@@ -65,24 +64,11 @@ namespace RoomAffiliation.Controllers
 
                 tr.Commit();
             }
-                
 
-            //// Получение списка элементов текущей модели
-            //List<Element> elementList = SupportMethods.GetElementListFromCurrentDocument(CurrentModel.Doc);
+            DateTime over = DateTime.Now;
 
-            //// Удаление значений параметров элементов, указанных в конфиге
-            //elementList = SupportMethods.DeleteValueParameters(elementList);
-
-            //// Получение предварительных ситуаций
-            //List<PredAffiliationSituation> predAffiliationSituationList = SupportMethods.GetPredAffiliationSituationList(roomList, elementList);
-
-            //// Получение проверенных ситуаций
-            //List<AffiliationSituation> AffiliationSituationList = SupportMethods.GetAffiliationSituationList(predAffiliationSituationList);
-
-            //MessageBox.Show(AffiliationSituationList.Count().ToString());
-
-            
-
+            MessageBox.Show($"Старт: {now}\n" +
+                $"Окончание: {over}");
         }
     }
 }

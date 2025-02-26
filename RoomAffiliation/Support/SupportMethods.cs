@@ -1,13 +1,10 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Architecture;
-using Autodesk.Revit.DB.Plumbing;
-using RoomAffiliation.Controllers;
 using RoomAffiliation.Models;
 using RoomAffiliation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Media;
 using LineSegment = RoomAffiliation.Models.LineSegment;
 
@@ -328,18 +325,17 @@ namespace RoomAffiliation.Support
 
             XYZ locationPointElement = (item.Location as LocationPoint).Point;
 
-
+            
             // Проверка на принадлежность вершинам
             foreach (var lineSegment in segments)
             {
+                if (Math.Abs(locationPointElement.X - lineSegment.startPoint.X) <= Config.LengthReserve 
+                    && Math.Abs(locationPointElement.Y - lineSegment.startPoint.Y) <= Config.LengthReserve) result = true;
 
-                if ((locationPointElement.X == lineSegment.startPoint.X && locationPointElement.Y == locationPointElement.Y)
-                    ||
-                    (locationPointElement.X == lineSegment.endPoint.X && locationPointElement.Y == lineSegment.endPoint.Y))
-                {                    
-                    result = true;                    
-                }
+                if (Math.Abs(locationPointElement.X - lineSegment.endPoint.X) <= Config.LengthReserve
+                    && Math.Abs(locationPointElement.Y - lineSegment.endPoint.Y) <= Config.LengthReserve) result = true;
             }
+
 
             // Проверка на принадлежность границам 
             foreach (var lineSegment in segments)
@@ -359,8 +355,36 @@ namespace RoomAffiliation.Support
                 }
             }
 
+            // Проверка принадлежности к границам  (с погрешностью к вертикальным и горизонтальным сегментам)
+            foreach (var lineSegment in segments)
+            {
+                double Xmin = lineSegment.startPoint.X;
+                double Xmax = lineSegment.endPoint.X;
 
-            // проверка на пересечение отрезков с мнимым отрезком, образованным точкой элемента
+                double Ymin = lineSegment.startPoint.Y;
+                double Ymax = lineSegment.endPoint.Y;
+
+                if (Xmin > Xmax)
+                {
+                    Xmin = lineSegment.endPoint.X;
+                    Xmax = lineSegment.startPoint.X;
+                }
+                if (Ymin > Ymax)
+                {
+                    Ymin = lineSegment.endPoint.Y;
+                    Ymax = lineSegment.startPoint.Y;
+                }
+
+                if (Math.Abs(Ymin - Ymax) <= Config.LengthReserve
+                    && Math.Abs(Ymin - locationPointElement.Y) <= Config.LengthReserve
+                    && ((locationPointElement.X >= Xmin) && (locationPointElement.X <= Xmax))) return true;
+
+                if (Math.Abs(Xmin - Xmax) <= Config.LengthReserve
+                    && Math.Abs(Xmin - locationPointElement.X) <= Config.LengthReserve
+                    && ((locationPointElement.Y >= Ymin) && (locationPointElement.Y <= Ymax))) return true;
+            }
+
+            // Проверка на пересечение отрезков с мнимым отрезком, образованным точкой элемента
             int i = 0;
             foreach (LineSegment segment in segments) 
             {
