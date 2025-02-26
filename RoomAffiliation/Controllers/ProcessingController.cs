@@ -41,7 +41,7 @@ namespace RoomAffiliation.Controllers
 
                         if (point.X >= extremumsAndLineSegments.Xmin - Config.LengthReserve && point.X <= extremumsAndLineSegments.Xmax + Config.LengthReserve &&
                             point.Y >= extremumsAndLineSegments.Ymin - Config.LengthReserve && point.Y <= extremumsAndLineSegments.Ymax + Config.LengthReserve &&
-                            point.Z + Config.LengthReserve >= extremumsAndLineSegments.Zmin && point.Z <= extremumsAndLineSegments.Zmax + Config.LengthReserve) return true;
+                            point.Z >= extremumsAndLineSegments.Zmin - Config.LengthReserve && point.Z <= extremumsAndLineSegments.Zmax + Config.LengthReserve) return true;
                         else return false;
                     }).ToList();
 
@@ -50,9 +50,15 @@ namespace RoomAffiliation.Controllers
 
                     foreach (var item  in elements)
                     {
+                        
+
                         bool isInRoom = false;
 
                         isInRoom = SupportMethods.CheckElementIsInRoom(item, lineSegments);
+
+                        
+                            
+
 
                         if (isInRoom) 
                         {

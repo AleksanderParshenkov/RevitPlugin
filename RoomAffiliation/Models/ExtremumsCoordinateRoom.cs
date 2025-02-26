@@ -27,8 +27,7 @@ namespace RoomAffiliation.Models
 
             // Создание пустого списка отрезков границ помещения
             List<RoomAffiliation.Models.LineSegment> lineSegmentList = new List<RoomAffiliation.Models.LineSegment>();
-                       
-
+           
             double angleRadian = LinkModel.AngleRadian;
             Transform transform = LinkModel.Transform;
 
@@ -60,8 +59,8 @@ namespace RoomAffiliation.Models
 
             LineSegmentList = lineSegmentList;
 
-            Xmin = 10000; Ymin = 10000; Zmin = 10000;
-            Xmax = -10000; Ymax = -10000; Zmax = -10000;
+            Xmin = 100000; Ymin = 100000; Zmin = 100000;
+            Xmax = -100000; Ymax = -100000; Zmax = -100000;
 
             // Перебор начальных точек сегментов границ текущего помещения
             foreach (var point in lineSegmentList.Select(x => x.startPoint))

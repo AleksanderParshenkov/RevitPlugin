@@ -5,7 +5,9 @@ using RoomAffiliation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media;
+using System.Xml.Linq;
 using LineSegment = RoomAffiliation.Models.LineSegment;
 
 namespace RoomAffiliation.Support
@@ -90,6 +92,9 @@ namespace RoomAffiliation.Support
 
         public static bool CheckIntersection(Element element, Models.LineSegment segment_1 )
         {
+            
+
+
             LocationPoint locationPointElement = element.Location as LocationPoint;
             XYZ startPointElement = locationPointElement.Point;
 
@@ -388,7 +393,15 @@ namespace RoomAffiliation.Support
             int i = 0;
             foreach (LineSegment segment in segments) 
             {
-                if (CheckIntersection(item, segment)) i++;
+                if (segment.startPoint.Y >= locationPointElement.Y || segment.endPoint.Y >= locationPointElement.Y)
+                {   
+                    if (CheckIntersection(item, segment)) i++;
+
+                    if (item.Id.IntegerValue == 13775946)
+                    {
+                        MessageBox.Show($"Элемент проверяется c сегментом {segment.startPoint} {segment.endPoint}/ I = {i}");
+                    }
+                }
             }
             // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
             if (i % 2 == 1)
