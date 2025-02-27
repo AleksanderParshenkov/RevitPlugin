@@ -78,7 +78,7 @@ namespace RoomAffiliation.Models
             foreach (var point in lineSegmentList.Select(x => x.endPoint))
             {
                 if (point.X < Xmin) Xmin = point.X;
-                if (point.Y < Ymin) Ymin = point.Z;
+                if (point.Y < Ymin) Ymin = point.Y;
                 if (point.Z < Zmin) Zmin = point.Z;
 
                 if (point.X > Xmax) Xmax = point.X;

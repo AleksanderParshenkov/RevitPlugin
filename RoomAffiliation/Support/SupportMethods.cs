@@ -5,6 +5,7 @@ using RoomAffiliation.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using LineSegment = RoomAffiliation.Models.LineSegment;
 
 namespace RoomAffiliation.Support
@@ -87,18 +88,22 @@ namespace RoomAffiliation.Support
             return parametersCouples;
         }
 
-        public static bool CheckIntersection(Element element, Models.LineSegment segment_1 )
+        public static bool CheckIntersection(Element element, Models.LineSegment segment )
         {
-            
-
-
             LocationPoint locationPointElement = element.Location as LocationPoint;
             XYZ startPointElement = locationPointElement.Point;
 
+            // Отсеивание заранее не пересекающихся сегментов
+            if (segment.startPoint.X < startPointElement.X && segment.endPoint.X < startPointElement.X) return false;
+            if (segment.startPoint.X > startPointElement.X && segment.endPoint.X > startPointElement.X) return false;
+            if (segment.startPoint.Y < startPointElement.Y && segment.endPoint.Y < startPointElement.Y) return false;
+
+
             // Назанчение максимального Y (для сравнения отрезков)
-            double YmaxRoom = 0;
-            if (segment_1.startPoint.Y >= segment_1.endPoint.Y) YmaxRoom = segment_1.startPoint.Y;
-            else YmaxRoom = segment_1.endPoint.Y;
+            double YmaxRoom = segment.startPoint.Y;
+            if (segment.startPoint.Y < segment.endPoint.Y) YmaxRoom = segment.endPoint.Y;
+            else YmaxRoom = YmaxRoom + Config.LengthReserve;
+
 
             // Получение конечной точки элемента (вторая точка отрезка элемента) 
             XYZ endPointElement = new XYZ(startPointElement.X, YmaxRoom + 100, startPointElement.Z);
@@ -119,21 +124,21 @@ namespace RoomAffiliation.Support
             double Dy = 0;
 
             // Переназначение точек первого отрезка, где первая точка слева 
-            if (segment_1.startPoint.X <= segment_1.endPoint.X)
+            if (segment.startPoint.X <= segment.endPoint.X)
             {
-                Ax = segment_1.startPoint.X;
-                Ay = segment_1.startPoint.Y;
+                Ax = segment.startPoint.X;
+                Ay = segment.startPoint.Y;
 
-                Bx = segment_1.endPoint.X;
-                By = segment_1.endPoint.Y;
+                Bx = segment.endPoint.X;
+                By = segment.endPoint.Y;
             }
             else
             {
-                Ax = segment_1.endPoint.X;
-                Ay = segment_1.endPoint.Y;
+                Ax = segment.endPoint.X;
+                Ay = segment.endPoint.Y;
 
-                Bx = segment_1.startPoint.X;
-                By = segment_1.startPoint.Y;
+                Bx = segment.startPoint.X;
+                By = segment.startPoint.Y;
             }
 
             // Переназначение точек второго отрезка, где первая точка слева 
@@ -393,11 +398,6 @@ namespace RoomAffiliation.Support
                 if (segment.startPoint.Y >= locationPointElement.Y || segment.endPoint.Y >= locationPointElement.Y)
                 {   
                     if (CheckIntersection(item, segment)) i++;
-
-                    if (item.Id.IntegerValue == 13775946)
-                    {
-                        MessageBox.Show($"Элемент проверяется c сегментом {segment.startPoint} {segment.endPoint}/ I = {i}");
-                    }
                 }
             }
             // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
