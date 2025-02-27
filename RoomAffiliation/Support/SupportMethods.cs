@@ -90,14 +90,15 @@ namespace RoomAffiliation.Support
 
         public static bool CheckIntersection(Element element, Models.LineSegment segment )
         {
+            // Получение точки элемента
             LocationPoint locationPointElement = element.Location as LocationPoint;
             XYZ startPointElement = locationPointElement.Point;
 
-            // Отсеивание заранее не пересекающихся сегментов
-            if (segment.startPoint.X < startPointElement.X && segment.endPoint.X < startPointElement.X) return false;
-            if (segment.startPoint.X > startPointElement.X && segment.endPoint.X > startPointElement.X) return false;
-            if (segment.startPoint.Y < startPointElement.Y && segment.endPoint.Y < startPointElement.Y) return false;
+            // Первичные проверки расположения точек сегмента
+            if (startPointElement.X > segment_1.startPoint.X && startPointElement.X > segment_1.startPoint.Y) return false;
+            if (startPointElement.X < segment_1.startPoint.X && startPointElement.X < segment_1.startPoint.Y) return false;
 
+            if (startPointElement.Y > segment_1.startPoint.Y && startPointElement.Y > segment_1.startPoint.Y) return false;
 
             // Назанчение максимального Y (для сравнения отрезков)
             double YmaxRoom = segment.startPoint.Y;
@@ -395,9 +396,11 @@ namespace RoomAffiliation.Support
             int i = 0;
             foreach (LineSegment segment in segments) 
             {
-                if (segment.startPoint.Y >= locationPointElement.Y || segment.endPoint.Y >= locationPointElement.Y)
-                {   
-                    if (CheckIntersection(item, segment)) i++;
+                if (CheckIntersection(item, segment)) i++;
+
+                if (item.Id.IntegerValue == 13635220)
+                {
+                    MessageBox.Show($"Элемент проверяется c сегментом {segment.startPoint} {segment.endPoint}/ I = {i}");
                 }
             }
             // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
