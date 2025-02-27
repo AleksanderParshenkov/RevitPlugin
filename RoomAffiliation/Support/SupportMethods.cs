@@ -95,10 +95,10 @@ namespace RoomAffiliation.Support
             XYZ startPointElement = locationPointElement.Point;
 
             // Первичные проверки расположения точек сегмента
-            if (startPointElement.X > segment_1.startPoint.X && startPointElement.X > segment_1.startPoint.Y) return false;
-            if (startPointElement.X < segment_1.startPoint.X && startPointElement.X < segment_1.startPoint.Y) return false;
+            if (startPointElement.X > segment.startPoint.X && startPointElement.X > segment.startPoint.Y) return false;
+            if (startPointElement.X < segment.startPoint.X && startPointElement.X < segment.startPoint.Y) return false;
 
-            if (startPointElement.Y > segment_1.startPoint.Y && startPointElement.Y > segment_1.startPoint.Y) return false;
+            if (startPointElement.Y > segment.startPoint.Y && startPointElement.Y > segment.startPoint.Y) return false;
 
             // Назанчение максимального Y (для сравнения отрезков)
             double YmaxRoom = segment.startPoint.Y;
