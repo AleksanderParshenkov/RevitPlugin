@@ -10,26 +10,25 @@ namespace RoomAffiliation.Support
 {
     public static class SupprotGeometryMethods
     {
-        public static bool CheckIntersection(Element element, Models.LineSegment segment)
+        public static bool CheckIntersection(Element element, Models.LineSegment segment_1)
         {
             // Получение точки элемента
             LocationPoint locationPointElement = element.Location as LocationPoint;
             XYZ startPointElement = locationPointElement.Point;
 
             // Первичные проверки расположения точек сегмента
-            if (startPointElement.X > segment.startPoint.X && startPointElement.X > segment.startPoint.Y) return false;
-            if (startPointElement.X < segment.startPoint.X && startPointElement.X < segment.startPoint.Y) return false;
-
-            if (startPointElement.Y > segment.startPoint.Y && startPointElement.Y > segment.startPoint.Y) return false;
+            if (startPointElement.X > segment_1.startPoint.X && startPointElement.X > segment_1.endPoint.X) return false;
+            if (startPointElement.X < segment_1.startPoint.X && startPointElement.X < segment_1.endPoint.X) return false;
+            if (startPointElement.Y > segment_1.startPoint.Y && startPointElement.Y > segment_1.endPoint.Y) return false;
 
             // Назанчение максимального Y (для сравнения отрезков)
-            double YmaxRoom = segment.startPoint.Y;
-            if (segment.startPoint.Y < segment.endPoint.Y) YmaxRoom = segment.endPoint.Y;
+            double YmaxRoom = segment_1.startPoint.Y;
+            if (segment_1.startPoint.Y < segment_1.endPoint.Y) YmaxRoom = segment_1.endPoint.Y;
             else YmaxRoom = YmaxRoom + Config.LengthReserve;
 
 
             // Получение конечной точки элемента (вторая точка отрезка элемента) 
-            XYZ endPointElement = new XYZ(startPointElement.X, YmaxRoom + 100, startPointElement.Z);
+            XYZ endPointElement = new XYZ(startPointElement.X, YmaxRoom, startPointElement.Z);
 
             // Формирование отрезка проверки
             Models.LineSegment segment_2 = new Models.LineSegment();
@@ -47,21 +46,21 @@ namespace RoomAffiliation.Support
             double Dy = 0;
 
             // Переназначение точек первого отрезка, где первая точка слева 
-            if (segment.startPoint.X <= segment.endPoint.X)
+            if (segment_1.startPoint.X <= segment_1.endPoint.X)
             {
-                Ax = segment.startPoint.X;
-                Ay = segment.startPoint.Y;
+                Ax = segment_1.startPoint.X;
+                Ay = segment_1.startPoint.Y;
 
-                Bx = segment.endPoint.X;
-                By = segment.endPoint.Y;
+                Bx = segment_1.endPoint.X;
+                By = segment_1.endPoint.Y;
             }
             else
             {
-                Ax = segment.endPoint.X;
-                Ay = segment.endPoint.Y;
+                Ax = segment_1.endPoint.X;
+                Ay = segment_1.endPoint.Y;
 
-                Bx = segment.startPoint.X;
-                By = segment.startPoint.Y;
+                Bx = segment_1.startPoint.X;
+                By = segment_1.startPoint.Y;
             }
 
             // Переназначение точек второго отрезка, где первая точка слева 
