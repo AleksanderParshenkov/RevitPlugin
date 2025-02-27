@@ -15,11 +15,7 @@ namespace RoomAffiliation.Controllers
 
             MainWindow.tb_ParameterRoom_2.Text = "Номер";
             MainWindow.tb_ParameterRoom_2.IsEnabled = false;
-
-            // Временно для отладки.
-            MainWindow.tb_ParameterElement_1.Text = "ROM_Имя помещения в офисе";
-
-            MainWindow.tb_ParameterElement_2.Text = "ROM_Номер";
+                        
         }
     }
 }

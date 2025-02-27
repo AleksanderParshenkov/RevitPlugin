@@ -30,6 +30,29 @@ namespace RoomAffiliation.Support
                     && Math.Abs(locationPointElement.Y - segment.endPoint.Y) <= Config.LengthReserve) result = true;
             }
 
+            // Проверка на принадлежность границам 
+            // Точка находится на границе, если длина границы равна сумме длинн от точки элемента до каждой точки границы
+            foreach (var segment in segments)
+            {
+                //d2= (х2— х1)2+ (y2— y1)2
+
+                // Получаем длину сегмента
+                double segmentLength = Math.Sqrt(Math.Pow(segment.startPoint.X - segment.endPoint.X, 2) + Math.Pow(segment.startPoint.Y - segment.endPoint.Y, 2));
+
+                double lineToStartPointLength = Math.Sqrt(Math.Pow(segment.startPoint.X - locationPointElement.X, 2) + Math.Pow(segment.startPoint.Y - locationPointElement.Y, 2));
+
+                double lineToEndPointLength = Math.Sqrt(Math.Pow(locationPointElement.X - segment.endPoint.X, 2) + Math.Pow(locationPointElement.Y - segment.endPoint.Y, 2));
+
+                if (Math.Abs(segmentLength - (lineToStartPointLength + lineToEndPointLength)) <= Config.LengthReserve) result = true;
+            }
+
+
+
+
+
+
+
+
             //// Проверка на принадлежность границам 
             //foreach (var lineSegment in segments)
             //{
