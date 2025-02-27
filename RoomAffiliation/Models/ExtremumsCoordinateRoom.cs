@@ -39,52 +39,58 @@ namespace RoomAffiliation.Models
                     foreach (Autodesk.Revit.DB.BoundarySegment boundarySegment in segmentList)
                     {
                         Models.LineSegment lineSegment = new Models.LineSegment();
-                        lineSegment.startPoint = new XYZ(
-                            (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
-                            (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
-                            boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
-                        lineSegment.endPoint = new XYZ(
-                            (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Sin(angleRadian)) + transform.Origin.X,
-                            (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
-                            boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
+
+                        List <XYZ> tessellates =  boundarySegment.GetCurve().Tessellate().ToList();
+
+                        lineSegment.startPoint = tessellates[0];
+                        lineSegment.endPoint = tessellates[1];
+
+
+                        //lineSegment.startPoint = new XYZ(
+                        //    (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                        //    (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                        //    boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
+                        //lineSegment.endPoint = new XYZ(
+                        //    (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                        //    (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                        //    boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
 
                         // Добавление отрезка в список отрезков
                         lineSegmentList.Add(lineSegment);
                     }
                 }
-            }           
-
-            // Добавление запаса к точкам границ помещения
-            //lineSegmentList = SupportMethods.AddZapasToPoint(lineSegmentList);
+            } 
 
             LineSegmentList = lineSegmentList;
 
-            Xmin = 100000; Ymin = 100000; Zmin = 100000;
-            Xmax = -100000; Ymax = -100000; Zmax = -100000;
+            Xmin = lineSegmentList.FirstOrDefault().startPoint.X;
+            Ymin = lineSegmentList.FirstOrDefault().startPoint.Y; 
+            Zmin = lineSegmentList.FirstOrDefault().startPoint.Z;
+
+            Xmax = lineSegmentList.FirstOrDefault().startPoint.X;
+            Ymax = lineSegmentList.FirstOrDefault().startPoint.Y;
+            Zmax = lineSegmentList.FirstOrDefault().startPoint.Z;
+
 
             // Перебор начальных точек сегментов границ текущего помещения
-            foreach (var point in lineSegmentList.Select(x => x.startPoint))
+            foreach (var segment in lineSegmentList)
             {
-                if (point.X < Xmin) Xmin = point.X;
-                if (point.Y < Ymin) Ymin = point.Y;
-                if (point.Z < Zmin) Zmin = point.Z;
+                // Задание минимальных значений
+                if (segment.startPoint.X < Xmin) Xmin = segment.startPoint.X;
+                if (segment.startPoint.Y < Ymin) Ymin = segment.startPoint.Y;
+                if (segment.startPoint.Z < Zmin) Zmin = segment.startPoint.Z;
 
-                if (point.X > Xmax) Xmax = point.X;
-                if (point.Y > Ymax) Ymax = point.Y;
-                if (point.Z > Zmax) Zmax = point.Z;
-            }
+                if (segment.endPoint.X < Xmin) Xmin = segment.endPoint.X;
+                if (segment.endPoint.Y < Ymin) Ymin = segment.endPoint.Y;
+                if (segment.endPoint.Z < Zmin) Zmin = segment.endPoint.Z;
 
-            // Перебор конечных точек сегментов границ текущего помещения
-            foreach (var point in lineSegmentList.Select(x => x.endPoint))
-            {
-                if (point.X < Xmin) Xmin = point.X;
-                if (point.Y < Ymin) Ymin = point.Y;
-                if (point.Z < Zmin) Zmin = point.Z;
+                // Задание максимальных значений
+                if (segment.startPoint.X > Xmax) Xmax = segment.startPoint.X;
+                if (segment.startPoint.Y > Ymax) Ymax = segment.startPoint.Y;
 
-                if (point.X > Xmax) Xmax = point.X;
-                if (point.Y > Ymax) Ymax = point.Y;
-                if (point.Z > Zmax) Zmax = point.Z;
-            }
+                if (segment.endPoint.X > Xmax) Xmax = segment.endPoint.X;
+                if (segment.endPoint.Y > Ymax) Ymax = segment.endPoint.Y;
+            }            
 
             Zmax = Zmin + room.get_Parameter(BuiltInParameter.ROOM_HEIGHT).AsDouble();
         }
