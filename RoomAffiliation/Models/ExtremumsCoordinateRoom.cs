@@ -4,6 +4,7 @@ using RoomAffiliation.Support;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Media;
 
 namespace RoomAffiliation.Models
 {
@@ -29,7 +30,7 @@ namespace RoomAffiliation.Models
             List<RoomAffiliation.Models.LineSegment> lineSegmentList = new List<RoomAffiliation.Models.LineSegment>();
            
             double angleRadian = LinkModel.AngleRadian;
-            Transform transform = LinkModel.Transform;
+            Autodesk.Revit.DB.Transform transform = LinkModel.Transform;
 
             // Заполнение списка отрезков границ помещения
             if (null != boundarySegmentsList)  //Проверка есть ли сегменты
@@ -37,14 +38,26 @@ namespace RoomAffiliation.Models
                 foreach (IList<Autodesk.Revit.DB.BoundarySegment> segmentList in boundarySegmentsList)
                 {
                     foreach (Autodesk.Revit.DB.BoundarySegment boundarySegment in segmentList)
-                    {
-                        Models.LineSegment lineSegment = new Models.LineSegment();
-
+                    { 
                         List <XYZ> tessellates =  boundarySegment.GetCurve().Tessellate().ToList();
 
-                        lineSegment.startPoint = tessellates[0];
-                        lineSegment.endPoint = tessellates[1];
+                        for (int i = 0; i < tessellates.Count; i++)
+                        {
+                            Models.LineSegment lineSegment = new Models.LineSegment();
 
+                            if (i == 0)
+                            {
+                                lineSegment.startPoint = tessellates[i];
+                                lineSegment.endPoint = tessellates[tessellates.Count - 1];
+                            }
+                            else
+                            {
+                                lineSegment.startPoint = tessellates[i];
+                                lineSegment.endPoint = tessellates[i - 1];
+                            }
+
+                            lineSegmentList.Add(lineSegment);
+                        }
 
                         //lineSegment.startPoint = new XYZ(
                         //    (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
@@ -54,9 +67,6 @@ namespace RoomAffiliation.Models
                         //    (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Sin(angleRadian)) + transform.Origin.X,
                         //    (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
                         //    boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
-
-                        // Добавление отрезка в список отрезков
-                        lineSegmentList.Add(lineSegment);
                     }
                 }
             } 

@@ -100,6 +100,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\SupportJsonMethods.cs" />
     <Compile Include="Support\SupportMethods.cs" />
+    <Compile Include="Support\SupportRoomMethors.cs" />
+    <Compile Include="Support\SupprotGeometryMethods.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>

@@ -49,20 +49,14 @@ namespace RoomAffiliation.Controllers
                     List <RoomAffiliation.Models.LineSegment> lineSegments = extremumsAndLineSegments.LineSegmentList;
 
                     foreach (var item  in elements)
-                    {
-                        
-
+                    { 
                         bool isInRoom = false;
 
-                        isInRoom = SupportMethods.CheckElementIsInRoom(item, lineSegments);
-
-                        
-                            
-
+                        isInRoom = SupportRoomMethors.CheckElementIsInRoom(item, lineSegments);
 
                         if (isInRoom) 
                         {
-                            // Запись принадлежности элементам. Транзакция
+                            // Запись принадлежности элементам
                             TransactionController transactionController = new TransactionController(item, room);
                         }
                     }
