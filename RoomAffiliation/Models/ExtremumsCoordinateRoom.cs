@@ -41,23 +41,60 @@ namespace RoomAffiliation.Models
                     { 
                         List <XYZ> tessellates =  boundarySegment.GetCurve().Tessellate().ToList();
 
-                        for (int i = 0; i < tessellates.Count; i++)
+                        if (tessellates.Count == 2)
                         {
                             Models.LineSegment lineSegment = new Models.LineSegment();
 
-                            if (i == 0)
-                            {
-                                lineSegment.startPoint = tessellates[i];
-                                lineSegment.endPoint = tessellates[tessellates.Count - 1];
-                            }
-                            else
-                            {
-                                lineSegment.startPoint = tessellates[i];
-                                lineSegment.endPoint = tessellates[i - 1];
-                            }
+                            lineSegment.startPoint = new XYZ(
+                                (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                boundarySegment.GetCurve().GetEndPoint(0).Z + transform.Origin.Z);
+                            lineSegment.endPoint = new XYZ(
+                                (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                (boundarySegment.GetCurve().GetEndPoint(1).X * Math.Sin(angleRadian) + boundarySegment.GetCurve().GetEndPoint(1).Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                boundarySegment.GetCurve().GetEndPoint(1).Z + transform.Origin.Z);
 
                             lineSegmentList.Add(lineSegment);
                         }
+                        else
+                        {
+                            for (int i = 0; i < tessellates.Count; i++)
+                            {
+                                Models.LineSegment lineSegment = new Models.LineSegment();
+
+                                if (i == 0)
+                                {                                   
+
+                                    lineSegment.startPoint = new XYZ(
+                                        (tessellates[i].X * Math.Cos(angleRadian) - tessellates[i].Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                        (tessellates[i].X * Math.Sin(angleRadian) + tessellates[i].Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                        tessellates[i].Z + transform.Origin.Z);
+
+                                    lineSegment.endPoint = new XYZ(
+                                        (tessellates[tessellates.Count - 1].X * Math.Cos(angleRadian) - tessellates[tessellates.Count - 1].Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                        (tessellates[tessellates.Count - 1].X * Math.Sin(angleRadian) + tessellates[tessellates.Count - 1].Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                        tessellates[tessellates.Count - 1].Z + transform.Origin.Z);                                    
+                                }
+                                else
+                                {
+                                    lineSegment.startPoint = tessellates[i];
+                                    lineSegment.endPoint = tessellates[i - 1];
+
+                                    lineSegment.startPoint = new XYZ(
+                                        (tessellates[i].X * Math.Cos(angleRadian) - tessellates[i].Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                        (tessellates[i].X * Math.Sin(angleRadian) + tessellates[i].Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                        tessellates[i].Z + transform.Origin.Z);
+
+                                    lineSegment.endPoint = new XYZ(
+                                        (tessellates[i - 1].X * Math.Cos(angleRadian) - tessellates[i - 1].Y * Math.Sin(angleRadian)) + transform.Origin.X,
+                                        (tessellates[i - 1].X * Math.Sin(angleRadian) + tessellates[i - 1].Y * Math.Cos(angleRadian)) + transform.Origin.Y,
+                                        tessellates[i - 1].Z + transform.Origin.Z);
+                                }
+                                lineSegmentList.Add(lineSegment);
+                            }
+                        }
+
+                        
 
                         //lineSegment.startPoint = new XYZ(
                         //    (boundarySegment.GetCurve().GetEndPoint(0).X * Math.Cos(angleRadian) - boundarySegment.GetCurve().GetEndPoint(0).Y * Math.Sin(angleRadian)) + transform.Origin.X,
@@ -74,7 +111,7 @@ namespace RoomAffiliation.Models
             LineSegmentList = lineSegmentList;
 
             Xmin = lineSegmentList.FirstOrDefault().startPoint.X;
-            Ymin = lineSegmentList.FirstOrDefault().startPoint.Y; 
+            Ymin = lineSegmentList.FirstOrDefault().startPoint.Y;
             Zmin = lineSegmentList.FirstOrDefault().startPoint.Z;
 
             Xmax = lineSegmentList.FirstOrDefault().startPoint.X;

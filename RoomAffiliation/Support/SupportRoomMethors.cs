@@ -83,7 +83,7 @@ namespace RoomAffiliation.Support
             {
                 if  (SupprotGeometryMethods. CheckIntersection(item, segment)) i++;
 
-                if (item.Id.IntegerValue == 15946) MessageBox.Show($"Проверяетс элемент. I = {i}");
+                //if (item.Id.IntegerValue == 12756622) MessageBox.Show($"Проверяетс элемент. I = {i} из количества проверяемых сегментов {segments.Count}");
             }
             // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
             if (i % 2 == 1)

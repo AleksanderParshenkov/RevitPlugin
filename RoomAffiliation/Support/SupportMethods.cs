@@ -20,7 +20,9 @@ namespace RoomAffiliation.Support
             var elementsCollectorLinkModel = new FilteredElementCollector(LinkModel.LinkInstanceDocument)
                 .WhereElementIsNotElementType()
                 .OfCategory(BuiltInCategory.OST_Rooms);
-            List<Room> rooms = elementsCollectorLinkModel.Select(x => (Room)x).ToList();
+            List<Room> rooms = elementsCollectorLinkModel.Select(x => (Room)x)
+                //.Where(x => x.Id.IntegerValue == 15390300)
+                .ToList();
 
             foreach (var roomsItem in rooms)
             {
@@ -41,6 +43,7 @@ namespace RoomAffiliation.Support
                     .WhereElementIsNotElementType()
                     .OfCategory(item)
                     .Select(x => x as Element)
+                    //.Where(x=>x.Id.IntegerValue == 12756622)
                     .ToList();
 
                 foreach (var element in elementListCurrentModel) resultList.Add((Element)element);
