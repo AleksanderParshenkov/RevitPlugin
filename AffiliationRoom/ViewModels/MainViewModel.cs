@@ -30,7 +30,7 @@ namespace AffiliationRoom.ViewModels
             {
                 return new DelegateCommand((obj) =>
                 {
-                    SetAffiliation.SetAffiliationMethod(SelectedLinkDocument);                    
+                    SetAffiliation.SetAffiliationMethod(SelectedLinkDocument, ParametersCouples);                    
                 }, (obj) => SelectedLinkDocument != null);
             }
         }
