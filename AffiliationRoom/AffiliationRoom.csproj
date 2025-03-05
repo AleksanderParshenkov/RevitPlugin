@@ -64,11 +64,16 @@
     <Compile Include="Config.cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Models\DataBase.cs" />
+    <Compile Include="Models\LineSegmentRoom.cs" />
     <Compile Include="Models\LinkDocument.cs" />
     <Compile Include="Models\ParametersCouple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ChangeElementFromDocument.cs" />
+    <Compile Include="Services\GetElementRoom.cs" />
     <Compile Include="Services\GetLinkDocumentList.cs" />
+    <Compile Include="Services\GetElementListFromDocument.cs" />
     <Compile Include="Services\SetAffiliation.cs" />
+    <Compile Include="Services\SharedGeometryMethods.cs" />
     <Compile Include="Support\CurrentDocument.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

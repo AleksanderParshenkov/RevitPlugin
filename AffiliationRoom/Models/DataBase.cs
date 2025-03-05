@@ -14,7 +14,7 @@ namespace AffiliationRoom.Models
             {
                 new ParametersCouple{
                     RoomParameter = "Имя",
-                    ElementParameter = "ROM_Имя помещения"
+                    ElementParameter = "ROM_Имя помещения в офисе"
                 },
                 new ParametersCouple{
                     RoomParameter = "Номер",
