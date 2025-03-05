@@ -53,17 +53,23 @@
         <GroupBox Grid.Row="0"
               Header="Связанная модель с помещениями"
               Margin="5,5,5,5">
-            <ComboBox x:Name="cmb_LinkedModels"
-                  DisplayMemberPath ="Name"/>
-
+            
+            <ComboBox 
+                ItemsSource="{Binding LinkDocuments}"
+                DisplayMemberPath ="Name"
+                SelectedItem="{Binding SelectedLinkDocument}"/>
+            
         </GroupBox>
+        
+        
         <GroupBox Grid.Row="1"
               Header="Настройка соответствия параметров"                  
               Margin="5,5,5,5">
-            <Grid Width="auto">
+            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -82,30 +88,31 @@
                         <DataTemplate>
                             <UniformGrid>
                                 <UniformGrid.Resources >
-                                    <Style TargetType="TextBlock" >
+                                    <Style TargetType="TextBox" >
                                         <Setter Property="Margin" Value="5" />
                                         <Setter Property="HorizontalAlignment" Value="Stretch" />
                                         <Setter Property="TextAlignment" Value="Center"/>
-                                        <Setter Property="MinHeight" Value="50"/>
+                                        <Setter Property="Height" Value="100"/>
                                     </Style>
                                 </UniformGrid.Resources>
 
-                                <TextBlock Text="{Binding RoomParameter}"/>
-                                <TextBlock Text="{Binding ElementParameter}"/>
+                                <TextBox Text="{Binding RoomParameter}"/>
+                                <TextBox Text="{Binding ElementParameter}"/>
                             </UniformGrid>
                         </DataTemplate>
                     </DataGrid.ItemTemplate>
                 </DataGrid>
 
-
-
+                <Button Content="СОХРАНИТЬ КАК"
+                        Grid.Row="2" Grid.Column="0"/>
+                <Button Content="ЗАГРУЗИТЬ"
+                        Grid.Row="2" Grid.Column="1"/>
             </Grid>
 
         </GroupBox>
 
         <Button Grid.Row="2"
-            x:Name="btn_WriteAffiliation"
             Content="ЗАПИСАТЬ ПРИНАДЛЕЖНОСТЬ"
-            Command="{Binding ClickAdd}"/>
+            Command="{Binding Click_SetAffiliation}"/>
     </Grid>
 </Window>

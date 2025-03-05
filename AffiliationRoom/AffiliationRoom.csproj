@@ -62,17 +62,20 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="DelegateCommand.cs" />
     <Compile Include="Models\DataBase.cs" />
+    <Compile Include="Models\LinkDocument.cs" />
     <Compile Include="Models\ParametersCouple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GetLinkDocumentList.cs" />
+    <Compile Include="Services\SetAffiliation.cs" />
+    <Compile Include="Support\CurrentDocument.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
