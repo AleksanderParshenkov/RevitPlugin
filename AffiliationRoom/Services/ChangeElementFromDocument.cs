@@ -17,13 +17,16 @@ namespace AffiliationRoom.Services
                     // Получение значения параметра помещения
                     Parameter parameterElement = element.LookupParameter(parameterCoupele.ElementParameter);
 
-                    if (parameterElement.StorageType == StorageType.String)
+                    if (parameterElement != null)
                     {
-                        parameterElement.Set("");
-                    }
-                    if (parameterElement.StorageType == StorageType.Integer || parameterElement.StorageType == StorageType.Double)
-                    {
-                        parameterElement.Set(0);
+                        if (parameterElement.StorageType == StorageType.String)
+                        {
+                            parameterElement.Set("");
+                        }
+                        if (parameterElement.StorageType == StorageType.Integer || parameterElement.StorageType == StorageType.Double)
+                        {
+                            parameterElement.Set(0);
+                        }
                     }
                 }
             }
@@ -37,22 +40,25 @@ namespace AffiliationRoom.Services
             {
                 Parameter parameterRoom = room.LookupParameter(parametersCoupe.RoomParameter);
 
-                if (parameterRoom.StorageType == StorageType.String)
+                if (parameterRoom != null)
                 {
-                    if (parameterRoom.AsString() != "" || parameterRoom.AsString() != null) value = parameterRoom.AsString();                    
-                    else value = parameterRoom.AsValueString();                    
+                    if (parameterRoom.StorageType == StorageType.String)
+                    {
+                        if (parameterRoom.AsString() != "" || parameterRoom.AsString() != null) value = parameterRoom.AsString();
+                        else value = parameterRoom.AsValueString();
 
-                    element.LookupParameter(parametersCoupe.ElementParameter).Set(value);
-                }
-                if (parameterRoom.StorageType == StorageType.Integer)
-                {
-                    value = parameterRoom.AsInteger().ToString();
-                    element.LookupParameter(parametersCoupe.ElementParameter).Set(int.Parse(value));
-                }
-                if (parameterRoom.StorageType == StorageType.Double)
-                {
-                    value = parameterRoom.AsInteger().ToString();
-                    element.LookupParameter(parametersCoupe.ElementParameter).Set(double.Parse(value));
+                        element.LookupParameter(parametersCoupe.ElementParameter).Set(value);
+                    }
+                    if (parameterRoom.StorageType == StorageType.Integer)
+                    {
+                        value = parameterRoom.AsInteger().ToString();
+                        element.LookupParameter(parametersCoupe.ElementParameter).Set(int.Parse(value));
+                    }
+                    if (parameterRoom.StorageType == StorageType.Double)
+                    {
+                        value = parameterRoom.AsInteger().ToString();
+                        element.LookupParameter(parametersCoupe.ElementParameter).Set(double.Parse(value));
+                    }
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace AffiliationRoom.ViewModels
 
         public MainViewModel()
         {
-            ParametersCouples = new ObservableCollection<ParametersCouple>(DataBase.GetParametersCouple());
+            ParametersCouples = new ObservableCollection<ParametersCouple>();
 
             LinkDocuments = new ObservableCollection<LinkDocument>(GetLinkDocumentList.GetLinkDocumentListMethod());
         }
@@ -27,7 +27,7 @@ namespace AffiliationRoom.ViewModels
                 return new DelegateCommand((obj) =>
                 {
                     SetAffiliation.SetAffiliationMethod(SelectedLinkDocument, ParametersCouples);                    
-                }, (obj) => SelectedLinkDocument != null);
+                }, (obj) => SelectedLinkDocument != null && ParametersCouples.Count > 0);
             }
         }
 
