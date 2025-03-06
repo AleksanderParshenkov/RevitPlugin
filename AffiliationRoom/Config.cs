@@ -31,7 +31,5 @@ namespace AffiliationRoom
         public static double LengthReserve = 25 / 304.8;
 
         public static double HeightReserve = 25 / 304.8;
-
-        public static double LengthHorizontalAndVerticalReserve = 2 / 304.8;
     }
 }

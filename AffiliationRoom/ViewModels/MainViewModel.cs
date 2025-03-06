@@ -2,11 +2,7 @@
 using AffiliationRoom.Services;
 using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
-using Autodesk.Revit.DB;
 using System.Windows.Input;
-using System.Windows.Media.Animation;
-using System.Windows;
-using System;
 
 namespace AffiliationRoom.ViewModels
 {
@@ -32,6 +28,29 @@ namespace AffiliationRoom.ViewModels
                 {
                     SetAffiliation.SetAffiliationMethod(SelectedLinkDocument, ParametersCouples);                    
                 }, (obj) => SelectedLinkDocument != null);
+            }
+        }
+
+        public ICommand Click_GetParametersCouplesFromFile
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    ParametersCouples = new ObservableCollection<ParametersCouple>(SupportJsonMethods.Deserialization());
+                    RaisePropertyChanged(() => ParametersCouples);
+                }, (obj) => true);
+            }
+        }
+
+        public ICommand Click_SaveParametersCouplesToFile
+        {
+            get
+            {
+                return new DelegateCommand((obj) =>
+                {
+                    SupportJsonMethods.Serialization(ParametersCouples);
+                }, (obj) => true);
             }
         }
     }

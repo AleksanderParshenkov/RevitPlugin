@@ -104,9 +104,11 @@
                 </DataGrid>
 
                 <Button Content="СОХРАНИТЬ КАК"
-                        Grid.Row="2" Grid.Column="0"/>
+                        Grid.Row="2" Grid.Column="0"
+                        Command="{Binding Click_SaveParametersCouplesToFile}"/>
                 <Button Content="ЗАГРУЗИТЬ"
-                        Grid.Row="2" Grid.Column="1"/>
+                        Grid.Row="2" Grid.Column="1"
+                        Command="{Binding Click_GetParametersCouplesFromFile}"/>
             </Grid>
 
         </GroupBox>
