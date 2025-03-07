@@ -56,6 +56,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AffiliationRoom.cs" />
     <Compile Include="App.cs" />
     <Compile Include="CheckModulName.cs" />
     <Compile Include="RemoveDuplicates.cs" />
@@ -89,6 +90,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AffiliationRoom\AffiliationRoom.csproj">
+      <Project>{d3d33ed4-9d61-48f2-8563-b60985bf15c1}</Project>
+      <Name>AffiliationRoom</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AllRevitServers\AllRevitServers.csproj">
       <Project>{92a87bc2-ac23-4192-a37f-6bb62d75b833}</Project>
       <Name>AllRevitServers</Name>
