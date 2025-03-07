@@ -1,5 +1,4 @@
-﻿using AffiliationRoom.Models;
-using AffiliationRoom.Support;
+﻿using AffiliationRoom.Support;
 using AffiliationRoom.Views;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;

@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace AffiliationRoom.Services
@@ -16,7 +14,6 @@ namespace AffiliationRoom.Services
     {
         public static void SetAffiliationMethod(LinkDocument selectedLinkDocument, ObservableCollection<ParametersCouple> parametersCouples)
         {
-
             DateTime now = DateTime.Now;
 
             using (Transaction tr = new Transaction(CurrentDocument.Doc, "Принадлежность помещений"))
@@ -83,7 +80,6 @@ namespace AffiliationRoom.Services
                         }
                     }
                 }
-
                 tr.Commit();
             }
 

@@ -2,9 +2,6 @@
 using Autodesk.Revit.DB;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AffiliationRoom.Services
 {
@@ -32,8 +29,6 @@ namespace AffiliationRoom.Services
             // Точка находится на границе, если длина границы равна сумме длинн от точки элемента до каждой точки границы
             foreach (var segment in segments)
             {
-                //d2= (х2— х1)2+ (y2— y1)2
-
                 // Получаем длину сегмента
                 double segmentLength = Math.Sqrt(Math.Pow(segment.startPoint.X - segment.endPoint.X, 2) + Math.Pow(segment.startPoint.Y - segment.endPoint.Y, 2));
 
@@ -79,13 +74,9 @@ namespace AffiliationRoom.Services
             {
                 if (SharedGeometryMethods.CheckIntersection(item, segment)) i++;
 
-                //if (item.Id.IntegerValue == 12756622) MessageBox.Show($"Проверяетс элемент. I = {i} из количества проверяемых сегментов {segments.Count}");
             }
             // Проверка количества пересечений (если нечетное - то точка внутри, если четное - вне помещения)
-            if (i % 2 == 1)
-            {
-                result = true;
-            }
+            if (i % 2 == 1) result = true;            
 
             return result;
         }
