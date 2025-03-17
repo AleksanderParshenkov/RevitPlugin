@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyLibrary", "FamilyLibr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliationRoom", "AffiliationRoom\AffiliationRoom.csproj", "{D3D33ED4-9D61-48F2-8563-B60985BF15C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetFamilyTypeListFromIds", "GetFamilyTypeListFromIds\GetFamilyTypeListFromIds.csproj", "{F90FE4F9-152A-47C5-98E0-2D81EC045864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{D3D33ED4-9D61-48F2-8563-B60985BF15C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3D33ED4-9D61-48F2-8563-B60985BF15C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3D33ED4-9D61-48F2-8563-B60985BF15C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
