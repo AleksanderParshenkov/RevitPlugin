@@ -25,11 +25,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeleteFakeDimension", "Dele
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllRevitServers", "AllRevitServers\AllRevitServers.csproj", "{92A87BC2-AC23-4192-A37F-6BB62D75B833}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFilter", "QuickFilter\QuickFilter.csproj", "{48619592-DD4D-4937-829B-B781A4BCA429}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoomAffiliation", "RoomAffiliation\RoomAffiliation.csproj", "{F176289A-7ACA-4962-9F40-06A1A4AE81AD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filter", "Filter\Filter.csproj", "{2A626A6C-C416-440B-A8C3-27ABC627326B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParameterMerging", "ParameterMerging\ParameterMerging.csproj", "{8EA17B03-1901-462B-AF81-01FE1B4C0612}"
 EndProject
@@ -38,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AffiliationRoom", "AffiliationRoom\AffiliationRoom.csproj", "{D3D33ED4-9D61-48F2-8563-B60985BF15C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetFamilyTypeListFromIds", "GetFamilyTypeListFromIds\GetFamilyTypeListFromIds.csproj", "{F90FE4F9-152A-47C5-98E0-2D81EC045864}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFilter", "QuickFilter\QuickFilter.csproj", "{A447047F-F1A1-40C9-881E-5A27CE5B8154}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,18 +87,10 @@ Global
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A87BC2-AC23-4192-A37F-6BB62D75B833}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48619592-DD4D-4937-829B-B781A4BCA429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48619592-DD4D-4937-829B-B781A4BCA429}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48619592-DD4D-4937-829B-B781A4BCA429}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48619592-DD4D-4937-829B-B781A4BCA429}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F176289A-7ACA-4962-9F40-06A1A4AE81AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2A626A6C-C416-440B-A8C3-27ABC627326B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA17B03-1901-462B-AF81-01FE1B4C0612}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,6 +107,10 @@ Global
 		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F90FE4F9-152A-47C5-98E0-2D81EC045864}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A447047F-F1A1-40C9-881E-5A27CE5B8154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A447047F-F1A1-40C9-881E-5A27CE5B8154}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A447047F-F1A1-40C9-881E-5A27CE5B8154}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A447047F-F1A1-40C9-881E-5A27CE5B8154}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
