@@ -1,5 +1,6 @@
 ﻿using QuickFilter.ViewModels;
 using System.Windows;
+using Autodesk.Revit.DB; // Обязательная
 
 
 namespace QuickFilter.Views
@@ -9,10 +10,10 @@ namespace QuickFilter.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow(MainViewModel mainViewModel)
-        {
-            DataContext = mainViewModel;
+        public MainWindow()
+        {            
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }

@@ -4,9 +4,54 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuickFilter.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:vm="clr-namespace:QuickFilter.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800" 
+             WindowStartupLocation="CenterScreen"
+             MinHeight="450" MinWidth="450" HorizontalAlignment="Center"
+             Height="450" Width="600" Title="Быстрый фильтр">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Background" Value="#294979"/>
+    <Setter Property="Foreground" Value="White"/>
+    </Style>
+    <Style TargetType="DataGrid">
+        <Setter Property="ColumnWidth" Value="*"/>
+    </Style>
+    </Window.Resources>
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0"
+                  Header="Фильтры"
+                  Margin="5,5,5,5">
+            <Grid>
+                <DataGrid  HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"
+                           ItemsSource="{Binding FilterPackCollection}"
+                           Grid.Row="1" Grid.ColumnSpan="2" HeadersVisibility="None">
+                    <DataGrid.ItemTemplate>
+                        <DataTemplate>
+                            <UniformGrid>
+                                <UniformGrid.Resources >
+                                    
+                                </UniformGrid.Resources>
+                                <CheckBox IsChecked="{Binding IsCheck}"/>
+                                <ComboBox ItemsSource="{Binding Category}"/>
+                                <ComboBox ItemsSource="{Binding ParameterList}"/>
+                                <TextBox Text="{Binding Filter}"/>
+                                <TextBox Text="{Binding Value}"/>
+                            </UniformGrid>
+                        </DataTemplate>
+                    </DataGrid.ItemTemplate>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <Button Grid.Row="1"
+                Content="ПРИМЕНИТЬ ФИЛЬТР"
+                Command="{Binding Click_UseFilter}"/>
     </Grid>
 </Window>

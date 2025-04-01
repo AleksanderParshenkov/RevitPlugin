@@ -28,6 +28,11 @@ namespace AffiliationRoom.Views
         public MainWindow()
         {            
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
+
+    //    <Window.DataContext>
+    //    <vm:MainViewModel/>
+    //  </Window.DataContext>
 }

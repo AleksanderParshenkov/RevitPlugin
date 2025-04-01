@@ -1,6 +1,7 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using QuickFilter.Models;
 using QuickFilter.ViewModels;
 using QuickFilter.Views;
 
@@ -11,9 +12,10 @@ namespace QuickFilter
     public class Cmd : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {   
-            MainViewModel mainViewModel = new MainViewModel(commandData);
-            MainWindow window = new MainWindow(mainViewModel);
+        {
+            CurrentModel.SetValues(commandData);
+            MainViewModel mainViewModel = new MainViewModel();
+            MainWindow window = new MainWindow();
             window.ShowDialog();
             return Result.Succeeded;
         }

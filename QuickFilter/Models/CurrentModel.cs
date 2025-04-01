@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.UI;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,29 @@ using System.Threading.Tasks;
 
 namespace QuickFilter.Models
 {
-    class CurrentModel
+    public class CurrentModel
     {
-        public ExternalCommandData CommandData { internal get; set; }
-        public UIApplication UiApp { internal get; set; }
-        public UIDocument UiDoc { internal get; set; }
-        public Autodesk.Revit.DB.Document Doc { internal get; set; }
+        private static ExternalCommandData commandData;
+        private static UIApplication uiApp;
+        private static UIDocument uiDoc;
+        private static Autodesk.Revit.DB.Document doc;
 
-        public void GetFullInfo(ExternalCommandData commandData)
+        private CurrentModel() { }
+                
+        public static void SetValues(ExternalCommandData _commandData)
         {
-            CommandData = commandData;
-            UiApp = CommandData.Application;
-            UiDoc = UiApp.ActiveUIDocument;
-            Doc = UiDoc.Document;
+            if (commandData == null)
+            {
+                commandData = _commandData;
+                uiApp = commandData.Application;
+                uiDoc = uiApp.ActiveUIDocument;
+                doc = uiDoc.Document;
+            }
+        }
+                
+        public static Document getDocument()
+        {
+            return doc;
         }
     }
 }
